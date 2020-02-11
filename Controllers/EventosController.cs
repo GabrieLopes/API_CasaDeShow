@@ -24,6 +24,7 @@ namespace CasaEventos.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
             return View(await _context.Evento.ToListAsync());
         }
 
@@ -46,12 +47,11 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Eventos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ViewBag.Casa = _context.Casa.ToList();
             ViewBag.Genero = _context.Genero.ToList();
-            
-            return View();
+            return View(await _context.Evento.ToListAsync());
         }
 
         // POST: Eventos/Create
@@ -59,25 +59,29 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso")] EventoDTO eventoTemp)
+        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status, Imagem")] EventoDTO eventoTemp)
         {
             if (ModelState.IsValid)
             {
                 Evento evento = new Evento();
                 evento.EventoId = eventoTemp.EventoId;
                 evento.NomeEvento = eventoTemp.NomeEvento;
-                evento.CapacidadeEvento = eventoTemp.CapacidadeEvento;
-                evento.QuantidadeIngressos = eventoTemp.QuantidadeIngressos;
+                evento.CapacidadeEvento = System.Convert.ToInt32(eventoTemp.CapacidadeEvento);
+                evento.QuantidadeIngressos = System.Convert.ToInt32(eventoTemp.QuantidadeIngressos);
                 evento.DataEvento = eventoTemp.DataEvento;
-                evento.ValorIngresso = eventoTemp.ValorIngresso;
-                evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);
-                evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);
-                evento.StatusEvento = true;
+                evento.ValorIngresso = System.Convert.ToSingle(eventoTemp.ValorIngresso);
+                evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
+                evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
+                evento.Status = true;
+                evento.Imagem = eventoTemp.Imagem;
                 _context.Add(evento);
-              await  _context.SaveChangesAsync();
+                await  _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            }else{
+            ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
             return View(eventoTemp);
+            }
         }
 
         // GET: Eventos/Edit/5
@@ -88,12 +92,23 @@ namespace CasaEventos.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Evento.FindAsync(id);
+            var evento = await _context.Evento.Include(e => e.Casa).Include(e => e.Genero).SingleOrDefaultAsync(e => e.EventoId == id);
             if (evento == null)
             {
                 return NotFound();
             }
-            return View(evento);
+            EventoDTO viewEvento = new EventoDTO();
+            viewEvento.EventoId = evento.EventoId;
+            viewEvento.NomeEvento = evento.NomeEvento;
+            viewEvento.CapacidadeEvento = System.Convert.ToString(evento.CapacidadeEvento);
+            viewEvento.QuantidadeIngressos = System.Convert.ToString(evento.QuantidadeIngressos);
+            viewEvento.DataEvento = evento.DataEvento;
+            viewEvento.Status = true;
+            viewEvento.ValorIngresso = System.Convert.ToString(evento.ValorIngresso);
+            viewEvento.Casa = evento.Casa.CasaId;
+            ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
+            return View(viewEvento);
         }
 
         // POST: Eventos/Edit/5
@@ -101,9 +116,9 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,GeneroEvento")] Evento evento)
+        public async Task<IActionResult> Edit(int id, [Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,GeneroEvento, Casa, Genero, Status, Imagem")] EventoDTO eventoTemp)
         {
-            if (id != evento.EventoId)
+            if (id != eventoTemp.EventoId)
             {
                 return NotFound();
             }
@@ -112,12 +127,24 @@ namespace CasaEventos.Controllers
             {
                 try
                 {
-                    _context.Update(evento);
-                    await _context.SaveChangesAsync();
+                Evento evento = new Evento();
+                evento.EventoId = eventoTemp.EventoId;
+                evento.NomeEvento = eventoTemp.NomeEvento;
+                evento.CapacidadeEvento = System.Convert.ToInt32(eventoTemp.CapacidadeEvento);
+                evento.QuantidadeIngressos = System.Convert.ToInt32(eventoTemp.QuantidadeIngressos);
+                evento.DataEvento = eventoTemp.DataEvento;
+                evento.ValorIngresso = System.Convert.ToSingle(eventoTemp.ValorIngresso);
+                evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
+                evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
+                evento.Status = true;
+                evento.Imagem = eventoTemp.Imagem;
+                _context.Update(evento);
+                await  _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventoExists(evento.EventoId))
+                    if (!EventoExists(eventoTemp.EventoId))
                     {
                         return NotFound();
                     }
@@ -126,9 +153,11 @@ namespace CasaEventos.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
-            return View(evento);
+            ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
+            return View(eventoTemp);
         }
 
         // GET: Eventos/Delete/5

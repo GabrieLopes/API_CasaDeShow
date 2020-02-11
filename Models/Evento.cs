@@ -27,8 +27,10 @@ namespace CasaEventos.Models
         [Required(ErrorMessage="Valor do ingresso é obrigatório!")]
         public float ValorIngresso { get;set; }
         [Required] 
-        public bool StatusEvento { get;set; }
-        
+        public bool Status { get;set; }
+
+        [Required]
+        public string Imagem {get;set;}
         public Casa Casa { get;set; }
 
         public Genero Genero { get;set; }
