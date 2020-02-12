@@ -35,9 +35,6 @@ namespace CasaEventos.DTO
 
         public bool Status { get;set; }
 
-        [Required]
-        public string Imagem { get; set; }
-
         [Required(ErrorMessage="Casa de show é obrigatória")]
         public int Casa { get;set; }
         [Required(ErrorMessage="Genero do evento é obrigatório")]

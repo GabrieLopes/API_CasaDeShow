@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CasaEventos.Data;
 using CasaEventos.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasaEventos.Controllers
 {
+    //Controle de acesso com Identity
+    [Authorize]
     public class CasasController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -44,6 +47,7 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Casas/Create
+        [Authorize(Policy = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +70,7 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Casas/Edit/5
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +122,7 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Casas/Delete/5
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -4,28 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Eventos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Creiar novo Evento</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeEvento)
+               Nome do Evento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CapacidadeEvento)
+               Capacidade do Evento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuantidadeIngressos)
+               Quantia de Ingressos
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataEvento)
+               Data do Evento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ValorIngresso)
+               Preço Unitário
             </th>
             <th>
                 Casa de Show
@@ -33,6 +33,7 @@
             <th>
                 Genero
             </th> 
+  
         </tr>
     </thead>
     <tbody>
@@ -45,13 +46,13 @@
                 @Html.DisplayFor(modelItem => item.CapacidadeEvento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
+                @Html.DisplayFor(modelItem => item.QuantidadeIngressos) restantes
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataEvento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ValorIngresso)
+                R$ @Html.DisplayFor(modelItem => item.ValorIngresso)
             </td>
              <td>
                 @Html.DisplayFor(modelItem => item.Casa.Nome)
@@ -59,11 +60,10 @@
              <td>
                 @Html.DisplayFor(modelItem => item.Genero.GeneroNome)
             </td>
-            
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EventoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EventoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.EventoId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a>
             </td>
         </tr>
 }

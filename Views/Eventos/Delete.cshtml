@@ -13,51 +13,33 @@
     <dl class="row">
         <dt class = "col-sm-2">
             Nome do Evento
-        @*  @Html.DisplayNameFor(model => model.NomeEvento) *@
         </dt>
         <dd class = "col-sm-10">
-            Nome do Evento
-        @*  @Html.DisplayFor(model => model.NomeEvento) *@
+            @Html.DisplayFor(model => model.NomeEvento) 
         </dd>
         <dt class = "col-sm-2">
             Capacidade do Evento
-        @*  @Html.DisplayNameFor(model => model.CapacidadeEvento) *@
         </dt> 
         <dd class = "col-sm-10">
-            Capacidade do Evento
-        @*  @Html.DisplayFor(model => model.CapacidadeEvento) *@
+            @Html.DisplayFor(model => model.CapacidadeEvento)
         </dd>
         <dt class = "col-sm-2">
             Total de Ingressos a Venda
-        @*     @Html.DisplayNameFor(model => model.QuantidadeIngressos) *@
         </dt>
         <dd class = "col-sm-10">
-            Total de Ingressos a Venda
-        @*     @Html.DisplayFor(model => model.QuantidadeIngressos) *@
+            @Html.DisplayFor(model => model.QuantidadeIngressos) 
         </dd>
         <dt class = "col-sm-2">
-            Data e Hora do Evento
-        @*    @Html.DisplayNameFor(model => model.DataEvento) *@
+            Data do Evento
         </dt>
         <dd class = "col-sm-10">
-            Data e Hora do Evento
-        @*      @Html.DisplayFor(model => model.DataEvento) *@
+            @Html.DisplayFor(model => model.DataEvento) 
         </dd>
         <dt class = "col-sm-2">
             Preço do Ingresso
-        @*      @Html.DisplayNameFor(model => model.ValorIngresso) *@
         </dt>
         <dd class = "col-sm-10">
-            Preço do Ingresso
-        @*      @Html.DisplayFor(model => model.ValorIngresso) *@
-        </dd>
-        <dt class = "col-sm-2">
-            Genero do Evento
-        @*     @Html.DisplayNameFor(model => model.GeneroEvento) *@
-        </dt>
-        <dd class = "col-sm-10">
-            Genero do Evento
-        @*      @Html.DisplayFor(model => model.GeneroEvento) *@
+            R$ @Html.DisplayFor(model => model.ValorIngresso) 
         </dd>
     </dl>
     

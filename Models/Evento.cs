@@ -30,7 +30,7 @@ namespace CasaEventos.Models
         public bool Status { get;set; }
 
         [Required]
-        public string Imagem {get;set;}
+
         public Casa Casa { get;set; }
 
         public Genero Genero { get;set; }

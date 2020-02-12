@@ -30,10 +30,15 @@ namespace CasaEventos
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => {
+            options.SignIn.RequireConfirmedAccount = false; 
+            options.Password.RequireNonAlphanumeric = false;})
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
            services.AddRazorPages();
+
+           services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Cargo", "True")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using CasaEventos.Data;
 using CasaEventos.Models;
 using CasaEventos.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasaEventos.Controllers
 {
+    //Controle de acesso com Identity
+    [Authorize]
     public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -47,11 +50,12 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Eventos/Create
-        public async Task<IActionResult> Create()
+        [Authorize(Policy = "Admin")]
+        public IActionResult Create()
         {
             ViewBag.Casa = _context.Casa.ToList();
             ViewBag.Genero = _context.Genero.ToList();
-            return View(await _context.Evento.ToListAsync());
+            return View();
         }
 
         // POST: Eventos/Create
@@ -59,7 +63,7 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status, Imagem")] EventoDTO eventoTemp)
+        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status")] EventoDTO eventoTemp)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +77,6 @@ namespace CasaEventos.Controllers
                 evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
                 evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
                 evento.Status = true;
-                evento.Imagem = eventoTemp.Imagem;
                 _context.Add(evento);
                 await  _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,6 +88,7 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Eventos/Edit/5
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -137,7 +141,6 @@ namespace CasaEventos.Controllers
                 evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
                 evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
                 evento.Status = true;
-                evento.Imagem = eventoTemp.Imagem;
                 _context.Update(evento);
                 await  _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -161,6 +164,7 @@ namespace CasaEventos.Controllers
         }
 
         // GET: Eventos/Delete/5
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

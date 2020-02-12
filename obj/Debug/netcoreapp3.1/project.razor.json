@@ -20501,6 +20501,11 @@
   "RootNamespace": "CasaEventos",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Create.cshtml",
       "TargetPath": "Views\\Generos\\Create.cshtml",
       "FileKind": "mvc"
@@ -20526,8 +20531,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Index.cshtml",
       "TargetPath": "Views\\Generos\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20546,6 +20561,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -20561,8 +20581,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20581,6 +20611,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\Index.cshtml",
       "TargetPath": "Views\\Eventos\\Index.cshtml",
       "FileKind": "mvc"
@@ -20591,6 +20631,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Delete.cshtml",
       "TargetPath": "Views\\Generos\\Delete.cshtml",
       "FileKind": "mvc"
@@ -20598,6 +20643,11 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Shared\\_LoginPartial.cshtml",
       "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
       "FileKind": "mvc"
     },
     {

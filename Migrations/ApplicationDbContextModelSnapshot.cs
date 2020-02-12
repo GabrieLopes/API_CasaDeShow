@@ -47,7 +47,7 @@ namespace CasaEventos.Migrations
                     b.Property<int>("CapacidadeEvento")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CasaId")
+                    b.Property<int>("CasaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataEvento")
@@ -55,10 +55,6 @@ namespace CasaEventos.Migrations
 
                     b.Property<int?>("GeneroId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Imagem")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("NomeEvento")
                         .IsRequired()
@@ -298,7 +294,9 @@ namespace CasaEventos.Migrations
                 {
                     b.HasOne("CasaEventos.Models.Casa", "Casa")
                         .WithMany()
-                        .HasForeignKey("CasaId");
+                        .HasForeignKey("CasaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CasaEventos.Models.Genero", "Genero")
                         .WithMany()
