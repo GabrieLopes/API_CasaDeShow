@@ -34,5 +34,6 @@ namespace CasaEventos.Models
         public Casa Casa { get;set; }
 
         public Genero Genero { get;set; }
+
     }
 }

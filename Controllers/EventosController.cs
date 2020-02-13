@@ -9,6 +9,8 @@ using CasaEventos.Data;
 using CasaEventos.Models;
 using CasaEventos.DTO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace CasaEventos.Controllers
 {
@@ -76,10 +78,11 @@ namespace CasaEventos.Controllers
                 evento.ValorIngresso = System.Convert.ToSingle(eventoTemp.ValorIngresso);
                 evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
                 evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
-                evento.Status = true;
+                evento.Status = true;   
                 _context.Add(evento);
                 await  _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }else{
             ViewBag.Casa = _context.Casa.ToList();
             ViewBag.Genero = _context.Genero.ToList();

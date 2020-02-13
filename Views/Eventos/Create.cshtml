@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
        
             <div class="form-group">
@@ -19,34 +19,46 @@
                 <input asp-for="NomeEvento" class="form-control" />
                 <span asp-validation-for="NomeEvento" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="CapacidadeEvento" class="control-label">Capacidade do Evento</label>
                 <input asp-for="CapacidadeEvento" class="form-control" />
                 <span asp-validation-for="CapacidadeEvento" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="QuantidadeIngressos" class="control-label">Total de Ingressos a Venda</label>
                 <input asp-for="QuantidadeIngressos" class="form-control" />
                 <span asp-validation-for="QuantidadeIngressos" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="DataEvento" class="control-label"></label>
                 <input asp-for="DataEvento" class="form-control" />
                 <span asp-validation-for="DataEvento" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ValorIngresso" class="control-label">Preço do Ingresso</label>
                 <input asp-for="ValorIngresso" class="form-control" />
                 <span asp-validation-for="ValorIngresso" class="text-danger"></span>
             </div>
+
             <div class="form-group">  
                 <p>Selecione uma Casa de Show</p>
                 <select asp-for="Casa" asp-items='@(new SelectList(@ViewBag.Casa, "CasaId", "Nome"))' class="form-control"></select>
             </div>
+
             <div class="form-group">
                 <p>Selecione um Genero para o Evento</p>
                 <select asp-for="Genero" asp-items='@(new SelectList(@ViewBag.Genero, "GeneroId", "GeneroNome"))' class="form-control"></select>
             </div>
+            @* <div class="form-group">
+                <label asp-for="FotoEvento" class="control-label"></label>
+                <input asp-for="FotoEvento" type="file" name="image" id="image" class="form-control">
+                <span asp-validation-for="FotoEvento" class="text-danger"></span>
+            </div> *@
+
             <div class="form-group">
                 <button type="submit" value="Create" class="btn btn-primary">Criar</button>
             </div>

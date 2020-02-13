@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+               
+            </th>
+            <th>
                Nome do Evento
             </th>
             <th>
@@ -39,6 +42,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            @* <td>
+                <img src="@Url.Action( "PegarImagem" , "Evento" , new {id = item.EventoId} )" width="200px" height="200px" />
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.NomeEvento)
             </td>

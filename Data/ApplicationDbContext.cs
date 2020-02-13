@@ -16,5 +16,6 @@ namespace CasaEventos.Data
         public DbSet<CasaEventos.Models.Casa> Casa { get; set; }
         public DbSet<CasaEventos.Models.Evento> Evento { get; set; }
         public DbSet<CasaEventos.Models.Genero> Genero { get; set; }
+
     }
 }
