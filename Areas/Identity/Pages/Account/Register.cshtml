@@ -1,12 +1,11 @@
 @page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    Layout="_layoutLogin";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-<div class="row">
+@* <div class="row">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Create a new account.</h4>
@@ -39,41 +38,70 @@
             </div>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
-    </div>
+    </div> *@
+<link rel="stylesheet" href="/Style/LoginPersonalizado.css" />
 
-    @*
-    <div class="col-md-6 col-md-offset-2">
+
+<div class="container">
+<div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
+            <form id="account" method="post" class="form-signin">
+                <div class="card card-signin my-5">
+                <div class="card-body">
+                <h5 class="card-title text-center">Registrar</h5>
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                  <div class="form-label-group">
+                <input asp-for="Input.Nome" class="form-control" placeholder="Nome Completo">
+                <label asp-for="Input.Nome">Nome Completo </label> 
+                <span asp-validation-for="Input.Nome" class="text-danger"></span>
+                </div>
+                
+                <div class="form-label-group">
+                <input asp-for="Input.Email" class="form-control" placeholder="Endereço de Email">
+                <label asp-for="Input.Email">Digite seu Email</label> 
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-label-group">
+                <input asp-for="Input.Password" class="form-control" placeholder="Digite sua Senha">
+                <label asp-for="Input.Password">Digite sua Senha</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>    
+                </div>
+                
+                <div class="form-label-group">
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirme sua Senha">
+                <label asp-for="Input.ConfirmPassword">Confirme sua Senha</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>    
+                </div>
+
+                <div class="custom-control custom-checkbox mb-3">
+                <div class="checkbox">
+                <input asp-for="Input.Cargo" type="checkbox" class="custom-control-input">
+                <label asp-for="Input.Cargo" class="custom-control-label">Conta de Admin?</label>
+                <span asp-validation-for="Input.Cargo" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Já tem uma conta? Entre agora</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Home" asp-route-returnUrl="@Model.ReturnUrl">Voltar para a tela de inicio</a>
+                    </p>
+                </div>
+                </div>
+                </div>
+            </form>
         </section>
     </div>
 </div>
-*@
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -7,7 +7,7 @@
 <h1>Eventos</h1>
 
 <p>
-    <a asp-action="Create">Creiar novo Evento</a>
+    <a asp-action="Create">Criar novo Evento</a>
 </p>
 <table class="table">
     <thead>
@@ -68,8 +68,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.EventoId">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a>
+                <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a> 
             </td>
         </tr>
 }

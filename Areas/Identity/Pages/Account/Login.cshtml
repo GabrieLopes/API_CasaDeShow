@@ -3,7 +3,7 @@
 
 
 @{
-    ViewData["Title"] = "Log in";
+    Layout="_layoutLogin";
     
 }
 
@@ -47,6 +47,9 @@
                 <div class="form-group">
                     <p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Crie uma nova conta</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Home" asp-route-returnUrl="@Model.ReturnUrl">Voltar para a tela de inicio</a>
                     </p>
                 </div>
                 </div>
