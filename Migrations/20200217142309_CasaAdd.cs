@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CasaEventos.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class CasaAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,33 @@ namespace CasaEventos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Casa",
+                columns: table => new
+                {
+                    CasaId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(maxLength: 100, nullable: false),
+                    Endereco = table.Column<string>(maxLength: 150, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Casa", x => x.CasaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genero",
+                columns: table => new
+                {
+                    GeneroId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    GeneroNome = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genero", x => x.GeneroId);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +180,38 @@ namespace CasaEventos.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Evento",
+                columns: table => new
+                {
+                    EventoId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeEvento = table.Column<string>(maxLength: 100, nullable: false),
+                    CapacidadeEvento = table.Column<int>(nullable: false),
+                    QuantidadeIngressos = table.Column<int>(nullable: false),
+                    DataEvento = table.Column<DateTime>(nullable: false),
+                    ValorIngresso = table.Column<float>(nullable: false),
+                    Status = table.Column<bool>(nullable: false),
+                    CasaId = table.Column<int>(nullable: false),
+                    GeneroId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Evento", x => x.EventoId);
+                    table.ForeignKey(
+                        name: "FK_Evento_Casa_CasaId",
+                        column: x => x.CasaId,
+                        principalTable: "Casa",
+                        principalColumn: "CasaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Evento_Genero_GeneroId",
+                        column: x => x.GeneroId,
+                        principalTable: "Genero",
+                        principalColumn: "GeneroId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -189,6 +248,16 @@ namespace CasaEventos.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evento_CasaId",
+                table: "Evento",
+                column: "CasaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evento_GeneroId",
+                table: "Evento",
+                column: "GeneroId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,10 +278,19 @@ namespace CasaEventos.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Evento");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Casa");
+
+            migrationBuilder.DropTable(
+                name: "Genero");
         }
     }
 }

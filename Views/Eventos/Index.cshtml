@@ -9,12 +9,9 @@
 <p>
     <a asp-action="Create">Criar novo Evento</a>
 </p>
-<table class="table">
+@* <table class="table">
     <thead>
         <tr>
-            <th>
-               
-            </th>
             <th>
                Nome do Evento
             </th>
@@ -35,17 +32,20 @@
             </th>
             <th>
                 Genero
+            </th>
+            <th>
+                
             </th> 
   
         </tr>
     </thead>
-    <tbody>
+    <tbody> *@
 @foreach (var item in Model) {
-        <tr>
-            @* <td>
+         @* <tr>
+           <td>
                 <img src="@Url.Action( "PegarImagem" , "Evento" , new {id = item.EventoId} )" width="200px" height="200px" />
-            </td> *@
-            <td>
+            </td> 
+            @* <td>
                 @Html.DisplayFor(modelItem => item.NomeEvento)
             </td>
             <td>
@@ -67,10 +67,36 @@
                 @Html.DisplayFor(modelItem => item.Genero.GeneroNome)
             </td>
             <td>
+               <img src="@item.Imagem" width="50%" class="img-fluid">
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
                 <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a> 
             </td>
-        </tr>
+        </tr> *@
+<div class="card mb-3 border-dark" style="max-width: 650px; ">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="@item.Imagem" class="img-fluid card-img" alt="Responsive image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">@item.NomeEvento</h5>
+        <p class="card-text">   Capacidade: @item.CapacidadeEvento <br>
+                                Ingressos Restantes:@item.QuantidadeIngressos <br>
+                                Preço Unitário: R$@item.ValorIngresso <br>
+                                Casa: @item.Casa.Nome <br>
+                                Genero: @item.Genero.GeneroNome <br>
+                                Data: @item.DataEvento
+        </p>
+        <div>
+            <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
+            <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>     
 }
     </tbody>
 </table>

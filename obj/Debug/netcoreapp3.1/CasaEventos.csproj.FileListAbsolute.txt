@@ -157,17 +157,13 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft
 C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Casas\Create.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Casas\Delete.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Casas\Details.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Casas\Edit.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Casas\Index.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Create.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Delete.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Details.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Edit.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Index.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Create.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Delete.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Details.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Edit.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Generos\Index.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
@@ -182,3 +178,6 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Ident
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_layoutLogin.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LayoutNoAdm.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\EmptyCasa.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\EmptyGenero.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Index.cshtml.g.cs

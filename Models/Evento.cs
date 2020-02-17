@@ -35,5 +35,7 @@ namespace CasaEventos.Models
 
         public Genero Genero { get;set; }
 
+        public string Imagem { get;set; }
+
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaEventos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200213130153_EventoFotoAdd")]
-    partial class EventoFotoAdd
+    [Migration("20200217142309_CasaAdd")]
+    partial class CasaAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,9 +54,6 @@ namespace CasaEventos.Migrations
 
                     b.Property<DateTime>("DataEvento")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<byte[]>("FotoEvento")
-                        .HasColumnType("longblob");
 
                     b.Property<int?>("GeneroId")
                         .HasColumnType("int");

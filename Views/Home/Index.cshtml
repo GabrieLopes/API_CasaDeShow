@@ -7,46 +7,20 @@
 <table class="table">
     <tbody>
 @foreach (var item in Model) {
-    @* <div class="container row" style="border:2px solid blue">
-        <div class="col-sm-4 text center">
-            img
-        </div>
-
-        <div style="text-align:justify">
-            <br>
-                <h5>
-             @Html.DisplayFor(modelItem => item.NomeEvento)
-                </h5>
-            <br>
-                @Html.DisplayFor(modelItem => item.CapacidadeEvento)
-            <br>
-                @Html.DisplayFor(modelItem => item.ValorIngresso)
-            <br>
-                @Html.DisplayFor(modelItem => item.CapacidadeEvento)    
-            <br>
-                @Html.DisplayFor(modelItem => item.DataEvento)
-            <br>
-                @Html.DisplayFor(modelItem => item.Casa.Nome)
-            <br>
-                @Html.DisplayFor(modelItem => item.Genero.GeneroNome)
-            <br>
-            <br>
-            <div class="form-group">
-                <input type="submit" value="Comprar" class="bt btn-primary">
-            </div>
-        </div>
-    </div> *@
+<div class="container">
+    <div class="row">
     <div class="card mb-3 card border-dark" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body 
-  ">
-    <h5 class="card-title"></h5>
-    <p class="card-text">O local suporta @Html.DisplayFor(modelItem => item.CapacidadeEvento) pessoas! e ainda restam @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
+    <img src="@item.Imagem" class="img-fluid card-img-top" alt="Responsive image">
+        <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">O local suporta @Html.DisplayFor(modelItem => item.CapacidadeEvento) pessoas! e ainda restam @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
          ingressos a venda, não perca a chance de ir assistir a @Html.DisplayFor(modelItem => item.NomeEvento) cujo seu foco é em @Html.DisplayFor(modelItem => item.Genero.GeneroNome), 
          sediado pela casa @Html.DisplayFor(modelItem => item.Casa.Nome). Cada ingresso por apenas  R$@Html.DisplayFor(modelItem => item.ValorIngresso) cada! O evento irá acontecer 
          em @Html.DisplayFor(modelItem => item.DataEvento)</p>
-    <a type="submit" value="Comprar" class="btn btn-primary">Comprar</a>
-  </div>
+        <a type="submit" value="Comprar" class="btn btn-primary">Comprar</a>
+    </div>
+    </div>
+    </div>
 </div>
 }
     </tbody>

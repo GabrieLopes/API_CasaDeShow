@@ -11,6 +11,7 @@ using CasaEventos.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CasaEventos.Controllers
 {
@@ -19,15 +20,26 @@ namespace CasaEventos.Controllers
     public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IWebHostEnvironment _hostEnvironment;
+        // private object _hostEnvironment;
 
-        public EventosController(ApplicationDbContext context)
+        public EventosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: Eventos
         public async Task<IActionResult> Index()
         {
+            if(_context.Casa.Count() == 0)
+            {
+                return View("EmptyCasa");
+            }
+            if(_context.Genero.Count() == 0)
+            {
+                return View("EmptyGenero");
+            }
             ViewBag.Casa = _context.Casa.ToList();
             ViewBag.Genero = _context.Genero.ToList();
             return View(await _context.Evento.ToListAsync());
@@ -65,10 +77,27 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status")] EventoDTO eventoTemp)
+        public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status, Imagem")] EventoDTO eventoTemp, List<IFormFile> files)
         {
             if (ModelState.IsValid)
-            {
+            {//Inserindo maneira de colocar fotos em eventos
+                foreach(var formFile in files)
+                {
+                if(formFile.Length > 0)
+                    {
+                    var filePath = Path.Combine(_hostEnvironment.WebRootPath, "Img");
+                    var fileName = Path.GetRandomFileName();
+                    var fileExtension = Path.GetExtension(formFile.FileName);
+
+                    var fullPath = Path.Combine(filePath, fileName + fileExtension);
+
+                    using (var stream = System.IO.File.Create(fullPath))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                    eventoTemp.Imagem = "/Img/" + fileName + fileExtension;
+                    }
+                }
                 Evento evento = new Evento();
                 evento.EventoId = eventoTemp.EventoId;
                 evento.NomeEvento = eventoTemp.NomeEvento;
@@ -79,6 +108,7 @@ namespace CasaEventos.Controllers
                 evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
                 evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
                 evento.Status = true;   
+                evento.Imagem = eventoTemp.Imagem;
                 _context.Add(evento);
                 await  _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -113,6 +143,7 @@ namespace CasaEventos.Controllers
             viewEvento.Status = true;
             viewEvento.ValorIngresso = System.Convert.ToString(evento.ValorIngresso);
             viewEvento.Casa = evento.Casa.CasaId;
+            viewEvento.Imagem = evento.Imagem;
             ViewBag.Casa = _context.Casa.ToList();
             ViewBag.Genero = _context.Genero.ToList();
             return View(viewEvento);
@@ -123,7 +154,7 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,GeneroEvento, Casa, Genero, Status, Imagem")] EventoDTO eventoTemp)
+        public async Task<IActionResult> Edit(int id, [Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,GeneroEvento, Casa, Genero, Status, Imagem")] EventoDTO eventoTemp, List<IFormFile> files)
         {
             if (id != eventoTemp.EventoId)
             {
@@ -134,6 +165,23 @@ namespace CasaEventos.Controllers
             {
                 try
                 {
+            foreach(var formFile in files)
+                {
+                if(formFile.Length > 0)
+                    {
+                    var filePath = Path.Combine(_hostEnvironment.WebRootPath, "Img");
+                    var fileName = Path.GetRandomFileName();
+                    var fileExtension = Path.GetExtension(formFile.FileName);
+
+                    var fullPath = Path.Combine(filePath, fileName + fileExtension);
+
+                    using (var stream = System.IO.File.Create(fullPath))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                    eventoTemp.Imagem = "/Img/" + fileName + fileExtension;
+                    }
+                }
                 Evento evento = new Evento();
                 evento.EventoId = eventoTemp.EventoId;
                 evento.NomeEvento = eventoTemp.NomeEvento;
@@ -143,6 +191,7 @@ namespace CasaEventos.Controllers
                 evento.ValorIngresso = System.Convert.ToSingle(eventoTemp.ValorIngresso);
                 evento.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa);//Pegando Id de Casa para salvar no banco de dados
                 evento.Genero = _context.Genero.First(cs =>cs.GeneroId == eventoTemp.Genero);//Pegando Id do genero para salvar no banco
+                evento.Imagem = eventoTemp.Imagem;
                 evento.Status = true;
                 _context.Update(evento);
                 await  _context.SaveChangesAsync();

@@ -20526,11 +20526,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\Details.cshtml",
-      "TargetPath": "Views\\Eventos\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -20541,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\EmptyGenero.cshtml",
+      "TargetPath": "Views\\Eventos\\EmptyGenero.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -20548,11 +20548,6 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Casas\\Edit.cshtml",
       "TargetPath": "Views\\Casas\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Details.cshtml",
-      "TargetPath": "Views\\Generos\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20578,11 +20573,6 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Casas\\Index.cshtml",
       "TargetPath": "Views\\Casas\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Casas\\Details.cshtml",
-      "TargetPath": "Views\\Casas\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20673,6 +20663,11 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\EmptyCasa.cshtml",
+      "TargetPath": "Views\\Eventos\\EmptyCasa.cshtml",
       "FileKind": "mvc"
     },
     {

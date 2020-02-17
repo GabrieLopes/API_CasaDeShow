@@ -13,7 +13,7 @@ namespace CasaEventos.Models
         [MinLength(2, ErrorMessage="Nome da casa de show é muito pequeno, tente um nome com pelo menos 2 caracteres")]
         public string Nome { get;set; } 
 
-        [Required(ErrorMessage="Endereço da casa de show é obrigatório")]
+        [Required(ErrorMessage="Endereço da casa de show é obrigatório!")]
         [StringLength(150, ErrorMessage="Endereço tem um nome muito extenso, tente um nome menor")]
         [MinLength(2, ErrorMessage="Endereço tem um nome muito pequeno, tente um nome com pelo menos 2 caracteres")]
         public string Endereco { get;set; }

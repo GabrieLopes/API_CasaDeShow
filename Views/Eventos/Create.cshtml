@@ -53,12 +53,11 @@
                 <p>Selecione um Genero para o Evento</p>
                 <select asp-for="Genero" asp-items='@(new SelectList(@ViewBag.Genero, "GeneroId", "GeneroNome"))' class="form-control"></select>
             </div>
-            @* <div class="form-group">
-                <label asp-for="FotoEvento" class="control-label"></label>
-                <input asp-for="FotoEvento" type="file" name="image" id="image" class="form-control">
-                <span asp-validation-for="FotoEvento" class="text-danger"></span>
-            </div> *@
-
+            <div class="form-group">
+                <label asp-for="Imagem" class="control-label"></label>
+                <input asp-for="Imagem" type="file"class="form-control" name="files">
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <button type="submit" value="Create" class="btn btn-primary">Criar</button>
             </div>

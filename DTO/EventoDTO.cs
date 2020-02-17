@@ -39,6 +39,6 @@ namespace CasaEventos.DTO
         public int Casa { get;set; }
         [Required(ErrorMessage="Genero do evento é obrigatório")]
         public int Genero { get;set; }
-
+        public string Imagem { get;set; }
     }
 }

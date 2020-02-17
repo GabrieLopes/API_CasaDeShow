@@ -53,11 +53,11 @@ namespace CasaEventos.Migrations
                     b.Property<DateTime>("DataEvento")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<byte[]>("FotoEvento")
-                        .HasColumnType("longblob");
-
                     b.Property<int?>("GeneroId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Imagem")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("NomeEvento")
                         .IsRequired()
@@ -90,7 +90,8 @@ namespace CasaEventos.Migrations
 
                     b.Property<string>("GeneroNome")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
 
                     b.HasKey("GeneroId");
 

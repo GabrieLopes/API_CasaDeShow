@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaEventos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200212130256_RemovedoImagemEvento")]
-    partial class RemovedoImagemEvento
+    [Migration("20200217162622_EventoImagem")]
+    partial class EventoImagem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,9 @@ namespace CasaEventos.Migrations
                     b.Property<int?>("GeneroId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Imagem")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("NomeEvento")
                         .IsRequired()
                         .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
@@ -89,7 +92,8 @@ namespace CasaEventos.Migrations
 
                     b.Property<string>("GeneroNome")
                         .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
 
                     b.HasKey("GeneroId");
 
