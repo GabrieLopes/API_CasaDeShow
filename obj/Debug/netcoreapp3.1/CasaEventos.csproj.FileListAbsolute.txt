@@ -70,7 +70,6 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\CasaEventos.TagHe
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\CasaEventos.RazorCoreGenerate.cache
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs

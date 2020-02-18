@@ -11,6 +11,7 @@
     <title>@ViewData["Title"] - CasaEventos</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="/wwwroot/Style/Background.css">
 
 </head>
 <body>
@@ -24,9 +25,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    @if(SignInManager.IsSignedIn(User) && User.FindFirst("Cargo").Value == "True"){                   
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
+                    @if(SignInManager.IsSignedIn(User) && User.FindFirst("Cargo").Value == "True"){                   
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Gerenciar
                             </a>
@@ -37,16 +38,17 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"  asp-controller="Eventos" asp-action="Index">Eventos</a>
                              </div>
+                    }
                         </li>
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Casas" asp-action="Index">WIP</a>
                         </li>
-                    </ul>}
+                    </ul>
                 </div>
             </div> 
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

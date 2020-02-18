@@ -9,94 +9,32 @@
 <p>
     <a asp-action="Create">Criar novo Evento</a>
 </p>
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>
-               Nome do Evento
-            </th>
-            <th>
-               Capacidade do Evento
-            </th>
-            <th>
-               Quantia de Ingressos
-            </th>
-            <th>
-               Data do Evento
-            </th>
-            <th>
-               Preço Unitário
-            </th>
-            <th>
-                Casa de Show
-            </th>
-            <th>
-                Genero
-            </th>
-            <th>
-                
-            </th> 
-  
-        </tr>
-    </thead>
-    <tbody> *@
+<table class="table">
+    <tbody>
+    <div class="row">
 @foreach (var item in Model) {
-         @* <tr>
-           <td>
-                <img src="@Url.Action( "PegarImagem" , "Evento" , new {id = item.EventoId} )" width="200px" height="200px" />
-            </td> 
-            @* <td>
-                @Html.DisplayFor(modelItem => item.NomeEvento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CapacidadeEvento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuantidadeIngressos) restantes
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataEvento)
-            </td>
-            <td>
-                R$ @Html.DisplayFor(modelItem => item.ValorIngresso)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Casa.Nome)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.Genero.GeneroNome)
-            </td>
-            <td>
-               <img src="@item.Imagem" width="50%" class="img-fluid">
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a> 
-            </td>
-        </tr> *@
-<div class="card mb-3 border-dark" style="max-width: 650px; ">
+ <div class="col-6">  
+<div class="card mb-3 border-dark" style="max-width: 750px; col-sm-6">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="@item.Imagem" class="img-fluid card-img" alt="Responsive image">
+      <img src="@item.Imagem" class="img-fluid card-img">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">@item.NomeEvento</h5>
-        <p class="card-text">   Capacidade: @item.CapacidadeEvento <br>
-                                Ingressos Restantes:@item.QuantidadeIngressos <br>
-                                Preço Unitário: R$@item.ValorIngresso <br>
-                                Casa: @item.Casa.Nome <br>
-                                Genero: @item.Genero.GeneroNome <br>
-                                Data: @item.DataEvento
-        </p>
-        <div>
+        <b><h5 class="card-title">@item.NomeEvento</h5></b>
+        <p class="card-text">   <b>Capacidade:</b> @item.CapacidadeEvento <b>Ingressos Restantes:</b> @item.QuantidadeIngressos <br>
+                                <b>Preço Unitário:</b> R$@item.ValorIngresso <b>Casa:</b> @item.Casa.Nome 
+                                <b>Genero:</b> @item.Genero.GeneroNome <b>Data:</b> @item.DataEvento<br>
             <a asp-action="Edit" asp-route-id="@item.EventoId">Editar</a> |
             <a asp-action="Delete" asp-route-id="@item.EventoId">Deletar</a> 
-        </div>
+        </p>
+
       </div>
     </div>
   </div>
+  </div>
 </div>     
 }
+    </div>
     </tbody>
 </table>

@@ -2,26 +2,73 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    int count = 0;
 }
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+    <div class="carousel-item active" data-interval="2000">
+      <img src="/Img/technic_upcoming_still_1280x720_jpg.jpg" class="d-block w-100" style="height: 800px;">
+       <div class="carousel-caption d-none d-md-block">
+        <h5>Proximos Eventos</h5>
+      </div>
+    </div>
+@if(Model.Count() != 0 ){
+    count++;
+    if(count < 5)
+    {
+    @foreach (var item in Model)
+      {
+     <div class="carousel-item" data-interval="4000">
+      <img src="@item.Imagem" class="d-block w-100" style="height: 800px;">
+       <div class="carousel-caption d-none d-md-block">
+        <h4><b>@item.NomeEvento</b></h4>
+        <h5><b>Ingressos: @item.QuantidadeIngressos</b></h5>
+        <a type="submit" value="Comprar" class="btn btn-primary">COMPRAR AGORA</a>
+      </div>
+    </div>
+      }
+
+    }
+}
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> 
+</div>
+<br>
+
 
 <table class="table">
     <tbody>
-@foreach (var item in Model) {
 <div class="container">
-    <div class="row">
+<div class="row">
+@foreach (var item in Model) {
+        <div class="col-4">
     <div class="card mb-3 card border-dark" style="width: 18rem;">
     <img src="@item.Imagem" class="img-fluid card-img-top" alt="Responsive image">
         <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">O local suporta @Html.DisplayFor(modelItem => item.CapacidadeEvento) pessoas! e ainda restam @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
-         ingressos a venda, não perca a chance de ir assistir a @Html.DisplayFor(modelItem => item.NomeEvento) cujo seu foco é em @Html.DisplayFor(modelItem => item.Genero.GeneroNome), 
-         sediado pela casa @Html.DisplayFor(modelItem => item.Casa.Nome). Cada ingresso por apenas  R$@Html.DisplayFor(modelItem => item.ValorIngresso) cada! O evento irá acontecer 
-         em @Html.DisplayFor(modelItem => item.DataEvento)</p>
+        <h5 class="card-title">@item.NomeEvento</h5>
+        <p class="card-text"> Capacidade para: @Html.DisplayFor(modelItem => item.CapacidadeEvento) pessoas! e ainda restam @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
+         ingressos a venda, cujo seu foco é @Html.DisplayFor(modelItem => item.Genero.GeneroNome), sediado pela casa @Html.DisplayFor(modelItem => item.Casa.Nome).<br>  
+         Preço Unitário: R$@Html.DisplayFor(modelItem => item.ValorIngresso)<br>  
+         O evento irá acontecer em: @Html.DisplayFor(modelItem => item.DataEvento)</p>
         <a type="submit" value="Comprar" class="btn btn-primary">Comprar</a>
+        </div>
     </div>
     </div>
+}
     </div>
 </div>
-}
     </tbody>
 </table>

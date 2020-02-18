@@ -20566,11 +20566,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Casas\\Index.cshtml",
       "TargetPath": "Views\\Casas\\Index.cshtml",
       "FileKind": "mvc"
