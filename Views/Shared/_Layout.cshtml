@@ -38,10 +38,12 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"  asp-controller="Eventos" asp-action="Index">Eventos</a>
                              </div>
-                    }
-                        </li>
+                    } @if(SignInManager.IsSignedIn(User)){
                          <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Casas" asp-action="Index">WIP</a>
+                            <a class="nav-link text-dark" asp-controller="Compras" asp-action="Historico">WIP</a>
+                        </li>
+
+                    }
                         </li>
                     </ul>
                 </div>

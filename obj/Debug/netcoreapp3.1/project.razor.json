@@ -20536,6 +20536,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Compras\\Compra.cshtml",
+      "TargetPath": "Views\\Compras\\Compra.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\EmptyGenero.cshtml",
       "TargetPath": "Views\\Eventos\\EmptyGenero.cshtml",
       "FileKind": "mvc"
@@ -20588,6 +20593,11 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Edit.cshtml",
       "TargetPath": "Views\\Generos\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Compras\\Historico.cshtml",
+      "TargetPath": "Views\\Compras\\Historico.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -3,14 +3,16 @@ using System;
 using CasaEventos.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CasaEventos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200219130938_CompraAdd")]
+    partial class CompraAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,9 +52,6 @@ namespace CasaEventos.Migrations
                     b.Property<int?>("EventoId")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
                     b.Property<int>("QtdIngressos")
                         .HasColumnType("int");
 
@@ -62,8 +61,6 @@ namespace CasaEventos.Migrations
                     b.HasKey("CompraId");
 
                     b.HasIndex("EventoId");
-
-                    b.HasIndex("IdentityUserId");
 
                     b.ToTable("Compra");
                 });
@@ -329,10 +326,6 @@ namespace CasaEventos.Migrations
                     b.HasOne("CasaEventos.Models.Evento", "Evento")
                         .WithMany()
                         .HasForeignKey("EventoId");
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
-                        .WithMany()
-                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("CasaEventos.Models.Evento", b =>

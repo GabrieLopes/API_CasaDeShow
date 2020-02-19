@@ -224,8 +224,7 @@ namespace CasaEventos.Controllers
                 return NotFound();
             }
 
-            var evento = await _context.Evento
-                .FirstOrDefaultAsync(m => m.EventoId == id);
+            var evento = await _context.Evento.FirstOrDefaultAsync(m => m.EventoId == id);
             if (evento == null)
             {
                 return NotFound();

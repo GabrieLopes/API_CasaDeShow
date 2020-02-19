@@ -29,7 +29,7 @@
        <div class="carousel-caption d-none d-md-block">
         <h4><b>@item.NomeEvento</b></h4>
         <h5><b>Ingressos: @item.QuantidadeIngressos</b></h5>
-        <a type="submit" value="Comprar" class="btn btn-primary">COMPRAR AGORA</a>
+        <a type="submit" class="btn btn-primary" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra">COMPRAR AGORA</a>
       </div>
     </div>
       }
@@ -59,11 +59,10 @@
     <img src="@item.Imagem" class="img-fluid card-img-top" alt="Responsive image">
         <div class="card-body">
         <h5 class="card-title">@item.NomeEvento</h5>
-        <p class="card-text"> Capacidade para: @Html.DisplayFor(modelItem => item.CapacidadeEvento) pessoas! e ainda restam @Html.DisplayFor(modelItem => item.QuantidadeIngressos)
-         ingressos a venda, cujo seu foco é @Html.DisplayFor(modelItem => item.Genero.GeneroNome), sediado pela casa @Html.DisplayFor(modelItem => item.Casa.Nome).<br>  
-         Preço Unitário: R$@Html.DisplayFor(modelItem => item.ValorIngresso)<br>  
-         O evento irá acontecer em: @Html.DisplayFor(modelItem => item.DataEvento)</p>
-        <a type="submit" value="Comprar" class="btn btn-primary">Comprar</a>
+        <p class="card-text"> <b>Ingressos Restantes:</b> @item.QuantidadeIngressos<br>
+        <b>O local do evento é:</b> @item.Casa.Nome <b>e seu foco é em:</b> @item.Genero.GeneroNome<br>
+        <b>O evento ocorrerá em:</b> @item.DataEvento</p>
+        <a type="submit" class="btn btn-primary" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra">Comprar</a>
         </div>
     </div>
     </div>
