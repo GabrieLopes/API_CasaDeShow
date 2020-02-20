@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using CasaEventos.Data;
 using CasaEventos.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasaEventos.Controllers
 {
@@ -41,11 +43,39 @@ namespace CasaEventos.Controllers
             _context.Add(compra);
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
+
         }
-        
-        public IActionResult Historico(){
+        //         [Authorize(Policy = "Admin")]
+        // public async Task<IActionResult> Delete(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     var compra = await _context.Compra.FirstOrDefaultAsync(m => m.CompraId == id);
+        //     if (compra == null)
+        //     {
+        //         return NotFound();
+        //     }
+
+        //     return View(compra);
+        // }
+
+        // // POST: Eventos/Delete/5
+        // [HttpPost, ActionName("Delete")]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> DeleteConfirmed(int id)
+        // {
+        //     var compra = await _context.Compra.FindAsync(id);
+        //     _context.Compra.Remove(compra);
+        //     await _context.SaveChangesAsync();
+        //     return RedirectToAction(nameof(Index));
+        // }
+
+        // public IActionResult Historico(){
             
-            return View();
-        }
+        //     return View();
+        // }
     }
 }

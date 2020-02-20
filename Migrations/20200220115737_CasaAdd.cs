@@ -67,7 +67,7 @@ namespace CasaEventos.Migrations
                 {
                     GeneroId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GeneroNome = table.Column<string>(nullable: false)
+                    GeneroNome = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,7 +193,8 @@ namespace CasaEventos.Migrations
                     ValorIngresso = table.Column<float>(nullable: false),
                     Status = table.Column<bool>(nullable: false),
                     CasaId = table.Column<int>(nullable: false),
-                    GeneroId = table.Column<int>(nullable: true)
+                    GeneroId = table.Column<int>(nullable: true),
+                    Imagem = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -209,7 +210,36 @@ namespace CasaEventos.Migrations
                         column: x => x.GeneroId,
                         principalTable: "Genero",
                         principalColumn: "GeneroId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Compra",
+                columns: table => new
+                {
+                    CompraId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    QtdIngressos = table.Column<int>(nullable: false),
+                    DataCompra = table.Column<DateTime>(nullable: false),
+                    TotalCompra = table.Column<float>(nullable: false),
+                    EventoId = table.Column<int>(nullable: true),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compra", x => x.CompraId);
+                    table.ForeignKey(
+                        name: "FK_Compra_Evento_EventoId",
+                        column: x => x.EventoId,
+                        principalTable: "Evento",
+                        principalColumn: "EventoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Compra_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -250,6 +280,16 @@ namespace CasaEventos.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Compra_EventoId",
+                table: "Compra",
+                column: "EventoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Compra_IdentityUserId",
+                table: "Compra",
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Evento_CasaId",
                 table: "Evento",
                 column: "CasaId");
@@ -278,10 +318,13 @@ namespace CasaEventos.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Evento");
+                name: "Compra");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Evento");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

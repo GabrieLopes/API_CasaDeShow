@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaEventos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200217162622_EventoImagem")]
-    partial class EventoImagem
+    [Migration("20200220115737_CasaAdd")]
+    partial class CasaAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,36 @@ namespace CasaEventos.Migrations
                     b.HasKey("CasaId");
 
                     b.ToTable("Casa");
+                });
+
+            modelBuilder.Entity("CasaEventos.Models.Compra", b =>
+                {
+                    b.Property<int>("CompraId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataCompra")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("EventoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("QtdIngressos")
+                        .HasColumnType("int");
+
+                    b.Property<float>("TotalCompra")
+                        .HasColumnType("float");
+
+                    b.HasKey("CompraId");
+
+                    b.HasIndex("EventoId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Compra");
                 });
 
             modelBuilder.Entity("CasaEventos.Models.Evento", b =>
@@ -294,6 +324,17 @@ namespace CasaEventos.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CasaEventos.Models.Compra", b =>
+                {
+                    b.HasOne("CasaEventos.Models.Evento", "Evento")
+                        .WithMany()
+                        .HasForeignKey("EventoId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("CasaEventos.Models.Evento", b =>

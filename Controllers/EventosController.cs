@@ -239,6 +239,7 @@ namespace CasaEventos.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var evento = await _context.Evento.FindAsync(id);
+            await _context.SaveChangesAsync();
             _context.Evento.Remove(evento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

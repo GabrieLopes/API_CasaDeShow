@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CasaEventos.Models
 {
@@ -30,11 +31,10 @@ namespace CasaEventos.Models
         public bool Status { get;set; }
 
         [Required]
-
         public Casa Casa { get;set; }
 
         public Genero Genero { get;set; }
-
+   
         public string Imagem { get;set; }
 
     }

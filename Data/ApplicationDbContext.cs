@@ -12,6 +12,7 @@ namespace CasaEventos.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
         public DbSet<CasaEventos.Models.Casa> Casa { get; set; }
         public DbSet<CasaEventos.Models.Evento> Evento { get; set; }
