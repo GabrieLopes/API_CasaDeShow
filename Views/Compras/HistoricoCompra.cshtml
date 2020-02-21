@@ -1,0 +1,33 @@
+@model IEnumerable<CasaEventos.Models.Compra>
+
+@{
+   
+}
+
+<h1 class="text-light" style="text-align: center;">Histórico de Compras de @User.FindFirst("Fullname").Value</h1>
+<table class="table">
+    <tbody>
+    <div class="row">
+@foreach (var item in Model) {
+ <div class="col-6">  
+<div class="card mb-3 border-dark" style="max-width: 750px; col-sm-6">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="@item.Evento.Imagem" class="img-fluid card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <b><h5 class="card-title">@item.Evento.NomeEvento</h5></b>
+        <p class="card-text">   <b>Ingressos Comprados:</b> @item.QtdIngressos<br>
+                                <b>Preço Total:</b> R$@item.TotalCompra<br>
+                                <b>Data:</b> @Html.DisplayFor(modelItem => item.DataCompra)<br>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</div>     
+}
+    </div>
+    </tbody>
+</table>

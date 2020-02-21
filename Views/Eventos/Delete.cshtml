@@ -1,16 +1,16 @@
 @model CasaEventos.Models.Evento
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Deletar";
 }
 
-<h1>Deletar</h1>
+<h1 class="text-danger" style="text-align: center;">DELETAR</h1>
 
-<h3>Você tem certeza que quer fazer isso?</h3>
-<div>
+<h3 class="text-danger">Você tem certeza que quer fazer isso?</h3>
+<div class="text-danger"> 
     <h4>As mudanças não podem ser desfeitas após a exclusão</h4>
     <hr />
-    <dl class="row">
+    <dl class="row mx-auto">
         <dt class = "col-sm-2">
             Nome do Evento
         </dt>
@@ -46,6 +46,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="EventoId" />
         <button type="submit" value="Delete" class="btn btn-danger">Deletar</button> |
-        <a asp-action="Index">Voltar para a Lista</a>
+        <a asp-action="Index" class="btn btn-light">Voltar para a Lista</a>
     </form>
 </div>

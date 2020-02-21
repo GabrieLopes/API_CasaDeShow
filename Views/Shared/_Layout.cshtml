@@ -8,17 +8,20 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CasaEventos</title>
+    <title>@ViewData["Title"] - Casa de Shows</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="/wwwroot/Style/Background.css">
 
 </head>
-<body>
+<body style="background-image: url('/Img/bgimage2.jpg'); background-repeat: no-repeat; background-size: cover;">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark box-shadow mb-3" >
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CasaEventos</a>
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <img src="/Img/icon3.png" width="50px">
+                </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,7 +31,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item dropdown">
                     @if(SignInManager.IsSignedIn(User) && User.FindFirst("Cargo").Value == "True"){                   
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle active text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Gerenciar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,12 +41,16 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"  asp-controller="Eventos" asp-action="Index">Eventos</a>
                              </div>
-                    } @if(SignInManager.IsSignedIn(User)){
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Compras" asp-action="Historico">WIP</a>
-                        </li>
-
+                    } 
+                    @if(SignInManager.IsSignedIn(User)){
+                            <li class="nav-item text-light">
+                            <a class="nav-link text-light" asp-controller="Compras" asp-action="HistoricoCompra">Histórico</a>
+                            </li>
+                        
                     }
+                            <li class="nav-item text-light">
+                            <a class="nav-link text-light" asp-controller="Eventos" asp-action="TodosEventos">Eventos</a>
+                            </li>
                         </li>
                     </ul>
                 </div>
@@ -56,9 +63,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class=" footer text-light bg-dark">
         <div class="container">
-             &copy; 2020 - Casa de Shows - <a asp-area="" asp-controller="Eventos" asp-action="Index">Teste</a>
+             &copy; 2020 - Desenvolvido por Gabriel Lopes - <a href="https://github.com/GabrieLopes"><img src="/Img/GitHub-Mark-64px.png" width="50px"></a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

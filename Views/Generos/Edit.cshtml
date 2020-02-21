@@ -1,31 +1,29 @@
 @model CasaEventos.Models.Genero
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Editar</h1>
+<h1 class="text-light" style="text-align: center;">EDITAR</h1>
 
-<h4>Genero</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row text-light">
+    <div class="col-md-4  mx-auto">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="GeneroId" />
             <div class="form-group">
-                <label asp-for="GeneroNome" class="control-label"></label>
+                <label asp-for="GeneroNome" class="control-label">Genero:</label>
                 <input asp-for="GeneroNome" class="form-control" />
                 <span asp-validation-for="GeneroNome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <button  type="submit" value="Save" class="btn btn-primary">Salvar</button>
+            </div>
+            <div>
+                <a asp-action="Index" class="btn btn-light">Voltar para a lista</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Voltar para a lista</a>
 </div>
 

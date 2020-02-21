@@ -1,16 +1,16 @@
 @model IEnumerable<CasaEventos.Models.Genero>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 
 
-<h1>Generos</h1>
+<h1 class="text-light" style="text-align: center;">GENEROS</h1>
 
 <p>
-    <a asp-action="Create">Criar novo genero</a>
+    <a asp-action="Create" class="btn btn-primary">Criar novo genero</a>
 </p>
-<table class="table">
+<table class="table text-light">
     <thead>
         <tr>
             <th>
@@ -26,8 +26,8 @@
                 @Html.DisplayFor(modelItem => item.GeneroNome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.GeneroId">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.GeneroId">Deletar</a> 
+                <a asp-action="Edit" asp-route-id="@item.GeneroId" class="btn btn-warning">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.GeneroId" class="btn btn-danger">Deletar</a> 
                 
             </td>
         </tr>

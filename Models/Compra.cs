@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace CasaEventos.Models
 {
     public class Compra
@@ -11,6 +12,8 @@ namespace CasaEventos.Models
         [Required]
         [Range(1, int.MaxValue, ErrorMessage ="Valor inválido")]
         public int QtdIngressos { get;set; }
+        
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy HH:mm}")]
         public DateTime DataCompra{ get;set; }
         public float TotalCompra { get;set; }
         public Evento Evento { get;set; }

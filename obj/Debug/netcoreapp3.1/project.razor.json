@@ -20531,6 +20531,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Compras\\HistoricoCompra.cshtml",
+      "TargetPath": "Views\\Compras\\HistoricoCompra.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Index.cshtml",
       "TargetPath": "Views\\Generos\\Index.cshtml",
       "FileKind": "mvc"
@@ -20591,13 +20596,13 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Edit.cshtml",
-      "TargetPath": "Views\\Generos\\Edit.cshtml",
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Eventos\\TodosEventos.cshtml",
+      "TargetPath": "Views\\Eventos\\TodosEventos.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Compras\\Historico.cshtml",
-      "TargetPath": "Views\\Compras\\Historico.cshtml",
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Views\\Generos\\Edit.cshtml",
+      "TargetPath": "Views\\Generos\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20668,6 +20673,11 @@
     {
       "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
       "FileKind": "mvc"
     },
     {

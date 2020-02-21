@@ -5,15 +5,16 @@
 }
 
 
-<h4>Comprar Ingressos</h4>
+<h4 class="text-light" style="text-align: center;">Comprar Ingressos</h4>
 <hr />
 
-<div class="row">
+<div class="row text-light">
     <div class="col-md-4">
         <form asp-action="ConfirmarCompra" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <input type="hidden" asp-for="@Model.Evento.EventoId">
+            <input type="hidden" asp-for="IdentityUser.Id">
 
             <div class="form-group">
                 <label asp-for="QtdIngressos" class="control-label">Quantia de ingressos</label>
@@ -31,6 +32,6 @@
     </div>
 </div>
 <div>
-    <a asp-action="Index">Voltar para a Lista</a>
+    <a asp-action="Index" class="btn btn-light">Voltar para a Lista</a>
 
 </div>

@@ -1,15 +1,14 @@
 @model CasaEventos.DTO.EventoDTO;
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Editar</h1>
+<h1 class="text-light">EDITAR</h1>
 
-<h4>Evento</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row text-light">
+    <div class="col-md-4  mx-auto">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="EventoId" />
@@ -57,6 +56,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar para a Lista</a>
+    <a asp-action="Index" class="btn btn-light">Voltar para a Lista</a>
 </div>
 

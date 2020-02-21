@@ -16,7 +16,6 @@ using Microsoft.AspNetCore.Hosting;
 namespace CasaEventos.Controllers
 {
     //Controle de acesso com Identity
-    [Authorize]
     public class EventosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -28,6 +27,7 @@ namespace CasaEventos.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
+        [Authorize]
 
         // GET: Eventos
         public async Task<IActionResult> Index()
@@ -77,6 +77,7 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,Casa, Genero, Status, Imagem")] EventoDTO eventoTemp, List<IFormFile> files)
         {
             if (ModelState.IsValid)
@@ -154,6 +155,7 @@ namespace CasaEventos.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("EventoId,NomeEvento,CapacidadeEvento,QuantidadeIngressos,DataEvento,ValorIngresso,GeneroEvento, Casa, Genero, Status, Imagem")] EventoDTO eventoTemp, List<IFormFile> files)
         {
             if (id != eventoTemp.EventoId)
@@ -236,6 +238,7 @@ namespace CasaEventos.Controllers
         // POST: Eventos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var evento = await _context.Evento.FindAsync(id);
@@ -243,6 +246,11 @@ namespace CasaEventos.Controllers
             _context.Evento.Remove(evento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> TodosEventos(){
+            ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
+            return View(await _context.Evento.ToListAsync());
         }
 
         private bool EventoExists(int id)

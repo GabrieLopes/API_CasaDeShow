@@ -6,6 +6,7 @@ using CasaEventos.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CasaEventos.Controllers
 {
@@ -35,6 +36,10 @@ namespace CasaEventos.Controllers
             compra.DataCompra = DateTime.Now;
             compra.TotalCompra = compra.QtdIngressos * compra.Evento.ValorIngresso;
 
+            //Salvando Id do usuário na compra
+            compra.IdentityUser.Id = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            compra.IdentityUser = _context.Users.First(c => c.Id == compra.IdentityUser.Id);
+
             //Decrementando a quantia de ingressos
             var ingresso = _context.Evento.First(c => c.EventoId == compra.Evento.EventoId);
             ingresso.QuantidadeIngressos -= compra.QtdIngressos;
@@ -45,37 +50,11 @@ namespace CasaEventos.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        //         [Authorize(Policy = "Admin")]
-        // public async Task<IActionResult> Delete(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var compra = await _context.Compra.FirstOrDefaultAsync(m => m.CompraId == id);
-        //     if (compra == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(compra);
-        // }
-
-        // // POST: Eventos/Delete/5
-        // [HttpPost, ActionName("Delete")]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> DeleteConfirmed(int id)
-        // {
-        //     var compra = await _context.Compra.FindAsync(id);
-        //     _context.Compra.Remove(compra);
-        //     await _context.SaveChangesAsync();
-        //     return RedirectToAction(nameof(Index));
-        // }
-
-        // public IActionResult Historico(){
-            
-        //     return View();
-        // }
+        [Authorize]
+        public async Task<IActionResult> HistoricoCompra(Compra compra){
+            ViewBag.Casa = _context.Casa.ToList();
+            ViewBag.Genero = _context.Genero.ToList();
+            return View( await _context.Compra.Include(x =>x.Evento).Where(x => x.IdentityUser.Id == this.User.FindFirstValue(ClaimTypes.NameIdentifier)).ToListAsync());
+        }
     }
 }

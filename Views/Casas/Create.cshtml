@@ -1,12 +1,12 @@
 @model CasaEventos.Models.Casa
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar";
 }
-<h1>Criar uma nova casa de shows</h1>
+<h1 class="text-light" style="text-align: center;">Criar uma nova casa de shows</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row text-light">
+    <div class="col-md-4  mx-auto">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -27,7 +27,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltar para a lista</a>
+    <a asp-action="Index" class="btn btn-light">Voltar para a lista</a>
 </div>
 
 

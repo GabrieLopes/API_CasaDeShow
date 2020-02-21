@@ -181,4 +181,6 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Event
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\EmptyGenero.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\Index.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Compras\Compra.cshtml.g.cs
-C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Compras\Historico.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\TodosEventos.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Compras\HistoricoCompra.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs

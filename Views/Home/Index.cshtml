@@ -24,7 +24,7 @@
        <div class="carousel-caption d-none d-md-block">
         <h4><b>@item.NomeEvento</b></h4>
         <h5><b>Ingressos: @item.QuantidadeIngressos</b></h5>
-        <a type="submit" class="btn btn-primary" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra">COMPRAR AGORA</a>
+        <a type="submit" class="btn btn-warning" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra">COMPRAR AGORA</a>
       </div>
     </div>
       }
@@ -46,23 +46,36 @@
 
 <table class="table">
     <tbody>
-<div class="container">
-<div class="row">
+    <div class="row">
 @foreach (var item in Model) {
-        <div class="col-4">
-    <div class="card mb-3 card border-dark" style="width: 18rem;">
-    <img src="@item.Imagem" class="img-fluid card-img-top" alt="Responsive image">
-        <div class="card-body">
-        <h5 class="card-title">@item.NomeEvento</h5>
-        <p class="card-text"> <b>Ingressos Restantes:</b> @item.QuantidadeIngressos<br>
-        <b>O local do evento é:</b> @item.Casa.Nome <b>e seu foco é em:</b> @item.Genero.GeneroNome<br>
-        <b>O evento ocorrerá em:</b> @item.DataEvento</p>
-        <a type="submit" class="btn btn-primary" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra">Comprar</a>
-        </div>
+  @if(item.QuantidadeIngressos > 0){
+
+ <div class="col-6">  
+<div class="card mb-3 border-dark" style="max-width: 750px; col-sm-6">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="@item.Imagem" class="img-fluid card-img">
     </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <b><h5 class="card-title">@item.NomeEvento</h5></b>
+        <p class="card-text">   <b>Ingressos Restantes:</b> @item.QuantidadeIngressos<br>
+                                <b>Preço Unitário:</b> R$@item.ValorIngresso<br>
+                                <b>Casa:</b> @item.Casa.Nome<br>
+                                <b>Genero:</b> @item.Genero.GeneroNome<br>
+                                <b>Data:</b> @Html.DisplayFor(modelItem => item.DataEvento)<br>
+                                <a type="submit" class="btn btn-primary" asp-route-id="@item.EventoId" asp-controller="Compras" asp-action="Compra" style="text-align: center;">Comprar</a>
+        </p>
+
+      </div>
     </div>
-}
+  </div>
+  </div>
+</div>     
+  }
+} 
+
     </div>
-</div>
     </tbody>
 </table>
+
