@@ -184,3 +184,7 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Compr
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Eventos\TodosEventos.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Views\Compras\HistoricoCompra.cshtml.g.cs
 C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
+C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

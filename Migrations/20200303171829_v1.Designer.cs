@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasaEventos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200220115737_CasaAdd")]
-    partial class CasaAdd
+    [Migration("20200303171829_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
