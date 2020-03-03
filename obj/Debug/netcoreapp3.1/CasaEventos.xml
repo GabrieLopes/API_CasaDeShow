@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CasaEventos</name>
+    </assembly>
+    <members>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasa">
+            <summary>
+            Listar todas as casas de show.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasa(System.Int32)">
+            <summary>
+            Buscar por ID.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.Post(CasaEventos.Controllers.CasaAPIController.CasaTemp)">
+            <summary>
+            Inserir casa de show.
+            </summary>
+        </member>
+    </members>
+</doc>

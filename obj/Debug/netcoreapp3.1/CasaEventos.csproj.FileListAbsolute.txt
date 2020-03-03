@@ -188,3 +188,5 @@ C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Microsoft.OpenApi
 C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\GLLV\Desktop\Code\CasaEventos\bin\Debug\netcoreapp3.1\CasaEventos.xml
+C:\Users\GLLV\Desktop\Code\CasaEventos\obj\Debug\netcoreapp3.1\CasaEventos.xml

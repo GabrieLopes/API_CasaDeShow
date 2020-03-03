@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CasaEventos.Controllers
 {
+
     [Route("api/v1/casas")]
     [ApiController]
     public class CasaAPIController : ControllerBase
@@ -15,7 +16,9 @@ namespace CasaEventos.Controllers
         {
             this._context = context;
         }
-
+        /// <summary>
+        /// Listar todas as casas de show.
+        /// </summary>
         [HttpGet]
         public IActionResult GetCasa()
         {
@@ -23,6 +26,9 @@ namespace CasaEventos.Controllers
             return Ok(casas);
         }
 
+        /// <summary>
+        /// Buscar por ID.
+        /// </summary>
         [HttpGet("{id}")]
         public IActionResult GetCasa(int id)
         {
@@ -38,6 +44,9 @@ namespace CasaEventos.Controllers
                 return new ObjectResult("");
             }
         }
+        /// <summary>
+        /// Inserir casa de show.
+        /// </summary>
         [HttpPost]
         public IActionResult Post([FromBody] CasaTemp casaTemp)
         {

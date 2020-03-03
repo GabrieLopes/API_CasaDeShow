@@ -12,6 +12,9 @@ using CasaEventos.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace CasaEventos
 {
@@ -21,7 +24,6 @@ namespace CasaEventos
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -30,20 +32,30 @@ namespace CasaEventos
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => {
-            options.SignIn.RequireConfirmedAccount = false; 
-            options.Password.RequireNonAlphanumeric = false;})
+            services.AddDefaultIdentity<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-           services.AddRazorPages();
+            services.AddRazorPages();
 
-           services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Cargo", "True")));
+            services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Cargo", "True")));
 
 
             //Swagger
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API DE PRODUTOS", Version = "v1" });
+                config.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "API CASA DE SHOWS",
+                    Version = "v1",
+                    Description = "API desenvolvida para o projeto das casas de show"
+                });
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            config.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -76,7 +88,7 @@ namespace CasaEventos
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            
+
             app.UseSwagger(config =>
             {
                 // config.RouteTemplate = "gabriel/{documentName}/swagger.json" Configura qual o diretório do Swagger
@@ -85,6 +97,7 @@ namespace CasaEventos
             { // Views HTML do Swagger
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "v1 docs");
             });
+
         }
-}
+    }
 }
