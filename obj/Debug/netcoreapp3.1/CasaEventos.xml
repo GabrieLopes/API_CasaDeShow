@@ -49,7 +49,7 @@
             Listar todas os eventos.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.Post(CasaEventos.Controllers.EventosAPIController.EventoTemp)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Post(EventoTemp)">
             <summary>
             Salvar um evento.
             </summary>
@@ -59,29 +59,54 @@
             Buscar por ID.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Casa)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Evento)">
             <summary>
             Atualizar Casa de Show.
             </summary>
         </member>
         <member name="M:CasaEventos.Controllers.EventosAPIController.Delete(System.Int32)">
             <summary>
-            Deletar uma Casa de Show.
+            Deletar um evento.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByAsc">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoCapacidadeByAsc">
             <summary>
-            Listar as casas em odem alfabética crescente por nome.
+            Listar os eventos em ordem crescente por capacidade.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByDesc">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoCapacidadeByDesc">
             <summary>
-            Listar as casas em odem alfabética decrescente por nome.
+            Listar os eventos em ordem decrescente por capacidade.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByNome(System.String)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoDataByAsc">
             <summary>
-            Buscar por casa por nome.
+            Listar os eventos em ordem crescente por data.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoDataByDesc">
+            <summary>
+            Listar os eventos em ordem decrescente por data.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoNomeByAsc">
+            <summary>
+            Listar os eventos em ordem crescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoNomeByDesc">
+            <summary>
+            Listar os eventos em ordem decrescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoPrecoByAsc">
+            <summary>
+            Listar os eventos em ordem crescente por preço.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEventoPrecoByDesc">
+            <summary>
+            Listar os eventos em ordem decrescente por preço.
             </summary>
         </member>
         <member name="M:CasaEventos.Controllers.GenerosAPIController.GetGenero">
@@ -107,6 +132,11 @@
         <member name="M:CasaEventos.Controllers.GenerosAPIController.Delete(System.Int32)">
             <summary>
             Deletar um Genero.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.UsersAPIController.GetUsers">
+            <summary>
+            Listar todos os usuários.
             </summary>
         </member>
     </members>

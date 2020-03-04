@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Linq.Expressions;
 using CasaEventos.Data;
 using CasaEventos.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CasaEventos.Controllers
 {
@@ -82,11 +79,12 @@ namespace CasaEventos.Controllers
                 eventoAPI.ValorIngresso = eventoTemp.ValorIngresso;
                 eventoAPI.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.Casa.CasaId);
                 eventoAPI.Genero = _context.Genero.First(cs => cs.GeneroId == eventoTemp.Genero.GeneroId);
+                eventoAPI.Status = true;
 
                 _context.Evento.Add(eventoAPI);
                 _context.SaveChanges();
                 Response.StatusCode = 201;
-                return new ObjectResult("Evento criada com sucesso.");
+                return new ObjectResult("Evento criado com sucesso.");
             }
             else
             {
@@ -105,7 +103,7 @@ namespace CasaEventos.Controllers
             {
                 try
                 {
-                    Evento evento = _context.Evento.First(c => c.EventoId == id);
+                    Evento evento = _context.Evento.First(ev => ev.EventoId == id);
                     return Ok(evento);
 
                 }
@@ -118,7 +116,7 @@ namespace CasaEventos.Controllers
             else
             {
                 Response.StatusCode = 404;
-                return new ObjectResult("Não existem casas criadas");
+                return new ObjectResult("Não existem eventos criados");
             }
         }
 
@@ -127,137 +125,185 @@ namespace CasaEventos.Controllers
         /// Atualizar Casa de Show.
         /// </summary>
         [HttpPatch("{id}")]
-        public IActionResult Patch([FromBody] Casa casa)
+        public IActionResult Patch([FromBody] Evento evento)
         {
-            if (casa.CasaId > 0)
+            if (_context.Evento.Count() > 0)
             {
                 try
                 {
-                    var c = _context.Casa.First(casaTemp => casaTemp.CasaId == casa.CasaId);
-                    if (c != null)
+                    var ev = _context.Evento.First(eventoTemp => eventoTemp.EventoId == evento.EventoId);
+                    if (ev != null)
                     {
                         //Editar
-
-                        //"IF ELSE reduzido"  
-                        /*Condição ? faz algo : faz outra coisa, ou seja, se o dado nome for diferente de nulo que vem da minha requisição eu altero o nome do produto pelo nome
-                        que vem na minha requisição, senão o nome que veio na requisição é nulo ele mantem o nome do produto*/
-                        c.Nome = casa.Nome != null ? casa.Nome : c.Nome;
-                        c.Endereco = casa.Endereco != null ? casa.Endereco : c.Endereco;
+                        ev.NomeEvento = evento.NomeEvento != null ? evento.NomeEvento : ev.NomeEvento;
+                        ev.CapacidadeEvento = evento.CapacidadeEvento != 0 ? evento.CapacidadeEvento : ev.CapacidadeEvento;
+                        ev.QuantidadeIngressos = evento.QuantidadeIngressos != 0 ? evento.QuantidadeIngressos : ev.QuantidadeIngressos;
+                        ev.DataEvento = evento.DataEvento != null ? evento.DataEvento : ev.DataEvento;
+                        ev.ValorIngresso = evento.ValorIngresso != 0 ? evento.ValorIngresso : ev.ValorIngresso;
+                        ev.Imagem = evento.Imagem != null ? evento.Imagem : ev.Imagem;
+                        ev.Casa = evento.Casa != null ? evento.Casa : ev.Casa;
+                        ev.Genero = evento.Genero != null ? evento.Genero : ev.Genero;
 
                         _context.SaveChanges();
-                        return Ok();
+                        return Ok(new { msg = "Evento alterado com sucesso." });
                     }
                     else
                     {
                         Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Casa não encontrada." });
+                        return new ObjectResult(new { msg = "Evento não encontrado." });
                     }
                 }
                 catch
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "Casa não encontrada." });
+                    return new ObjectResult(new { msg = "Evento não encontrado." });
                 }
 
             }
             else
             {
                 Response.StatusCode = 400;
-                return new ObjectResult(new { msg = "Id da casa é invalido." });
+                return new ObjectResult(new { msg = "Id do evento é invalido." });
             }
         }
 
         /// <summary>
-        /// Deletar uma Casa de Show.
+        /// Deletar um evento.
         /// </summary>
         [HttpDelete("{id}")] //Especificando que irá trabalhar com um Id
         public IActionResult Delete(int id)
         {
             try
             {
-                Casa casa = _context.Casa.First(c => c.CasaId == id);
-                _context.Casa.Remove(casa);
+                Evento evento = _context.Evento.First(ev => ev.EventoId == id);
+                _context.Evento.Remove(evento);
                 _context.SaveChanges();
-                return Ok();
+                return Ok(new { msg = "Evento excluido!" });
             }
             catch (Exception e)
             {
                 Response.StatusCode = 404;
-                return new ObjectResult("");
+                return new ObjectResult(new { msg = "Não foi possivel excluir o evento." });
             }
         }
-
         /// <summary>
-        /// Listar as casas em odem alfabética crescente por nome.
+        /// Listar os eventos em ordem crescente por capacidade.
         /// </summary>
-        [HttpGet("asc")]
-        public IActionResult GetCasaByAsc()
+        [HttpGet("capacidade/asc")]
+        public IActionResult GetEventoCapacidadeByAsc()
         {
-            var casa = _context.Casa.OrderBy(nomeAsc => nomeAsc.Nome).ToList();
-            return Ok(casa);
-
-        }
-        /// <summary>
-        /// Listar as casas em odem alfabética decrescente por nome.
-        /// </summary>
-        [HttpGet("desc")]
-        public IActionResult GetCasaByDesc()
-        {
-            var casa = _context.Casa.OrderByDescending(nomeDesc => nomeDesc.Nome).ToList();
-            return Ok(casa);
+            var evento = _context.Evento.OrderBy(Asc => Asc.CapacidadeEvento).ToList();
+            return Ok(evento);
 
         }
         /// <summary>
-        /// Buscar por casa por nome.
+        /// Listar os eventos em ordem decrescente por capacidade.
         /// </summary>
-        [HttpGet("{nome}")]
-        public IActionResult GetCasaByNome(string nome)
+        [HttpGet("capacidade/desc")]
+        public IActionResult GetEventoCapacidadeByDesc()
         {
-            try
-            {
-                Casa casa = _context.Casa.First(c => c.Nome == nome);
-                return Ok(casa);
-
-            }
-            catch (Exception e)
-            {
-                Response.StatusCode = 404; //Retorna o status Criado
-                return new ObjectResult("");
-            }
-        }
-
-
-
-        public class EventoTemp
-        {
-            [Required]
-            [StringLength(100, ErrorMessage = "Nome do evento é muito grande, tente um nome menor")]
-            [MinLength(2, ErrorMessage = "Nome do evento é muito pequeno, tente um nome com pelo menos 2 caracteres")]
-            public string NomeEvento { get; set; }
-
-            [Required(ErrorMessage = "Capacidade é obrigatória!")]
-            public int CapacidadeEvento { get; set; }
-
-            [Required(ErrorMessage = "Quantidade de ingressos é obrigatória!")]
-            public int QuantidadeIngressos { get; set; }
-
-            [Required(ErrorMessage = "Data do evento é obrigatória!")]
-            [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
-            public DateTime DataEvento { get; set; }
-
-            [Required(ErrorMessage = "Valor do ingresso é obrigatório!")]
-            public float ValorIngresso { get; set; }
-
-            [Required]
-            public Casa Casa { get; set; }
-
-            public Genero Genero { get; set; }
-
-            public string Imagem { get; set; }
+            var evento = _context.Evento.OrderByDescending(Desc => Desc.CapacidadeEvento).ToList();
+            return Ok(evento);
 
         }
 
 
+        /// <summary>
+        /// Listar os eventos em ordem crescente por data.
+        /// </summary>
+        [HttpGet("data/asc")]
+        public IActionResult GetEventoDataByAsc()
+        {
+            var evento = _context.Evento.OrderBy(Asc => Asc.DataEvento).ToList();
+            return Ok(evento);
+
+        }
+        /// <summary>
+        /// Listar os eventos em ordem decrescente por data.
+        /// </summary>
+        [HttpGet("data/desc")]
+        public IActionResult GetEventoDataByDesc()
+        {
+            var evento = _context.Evento.OrderByDescending(Desc => Desc.DataEvento).ToList();
+            return Ok(evento);
+
+        }
+
+
+        /// <summary>
+        /// Listar os eventos em ordem crescente por nome.
+        /// </summary>
+        [HttpGet("nome/asc")]
+        public IActionResult GetEventoNomeByAsc()
+        {
+            var evento = _context.Evento.OrderBy(nomeAsc => nomeAsc.NomeEvento).ToList();
+            return Ok(evento);
+
+        }
+        /// <summary>
+        /// Listar os eventos em ordem decrescente por nome.
+        /// </summary>
+        [HttpGet("nome/desc")]
+        public IActionResult GetEventoNomeByDesc()
+        {
+            var evento = _context.Evento.OrderByDescending(nomeDesc => nomeDesc.NomeEvento).ToList();
+            return Ok(evento);
+
+        }
+        /// <summary>
+        /// Listar os eventos em ordem crescente por preço.
+        /// </summary>
+        [HttpGet("preco/asc")]
+        public IActionResult GetEventoPrecoByAsc()
+        {
+            var evento = _context.Evento.OrderBy(Asc => Asc.ValorIngresso).ToList();
+            return Ok(evento);
+
+        }
+        /// <summary>
+        /// Listar os eventos em ordem decrescente por preço.
+        /// </summary>
+        [HttpGet("preco/desc")]
+        public IActionResult GetEventoPrecoByDesc()
+        {
+            var evento = _context.Evento.OrderByDescending(Desc => Desc.ValorIngresso).ToList();
+            return Ok(evento);
+
+        }
     }
+
+
 }
 
+
+
+public class EventoTemp
+{
+    [Required]
+    [StringLength(100, ErrorMessage = "Nome do evento é muito grande, tente um nome menor")]
+    [MinLength(2, ErrorMessage = "Nome do evento é muito pequeno, tente um nome com pelo menos 2 caracteres")]
+    public string NomeEvento { get; set; }
+
+    [Required(ErrorMessage = "Capacidade é obrigatória!")]
+    public int CapacidadeEvento { get; set; }
+
+    [Required(ErrorMessage = "Quantidade de ingressos é obrigatória!")]
+    public int QuantidadeIngressos { get; set; }
+
+    [Required(ErrorMessage = "Data do evento é obrigatória!")]
+    [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+    public DateTime DataEvento { get; set; }
+
+    [Required(ErrorMessage = "Valor do ingresso é obrigatório!")]
+    public float ValorIngresso { get; set; }
+    [Required]
+    public bool Status { get; set; }
+
+    [Required]
+    public Casa Casa { get; set; }
+
+    public Genero Genero { get; set; }
+
+    public string Imagem { get; set; }
+
+}
