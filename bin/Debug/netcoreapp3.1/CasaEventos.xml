@@ -19,5 +19,95 @@
             Inserir casa de show.
             </summary>
         </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.Patch(CasaEventos.Models.Casa)">
+            <summary>
+            Atualizar Casa de Show.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.Delete(System.Int32)">
+            <summary>
+            Deletar uma Casa de Show.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasaByAsc">
+            <summary>
+            Listar as casas em odem alfabética crescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasaByDesc">
+            <summary>
+            Listar as casas em odem alfabética decrescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasaByNome(System.String)">
+            <summary>
+            Buscar por casa por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEvento">
+            <summary>
+            Listar todas os eventos.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Post(CasaEventos.Controllers.EventosAPIController.EventoTemp)">
+            <summary>
+            Salvar um evento.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetEvento(System.Int32)">
+            <summary>
+            Buscar por ID.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Casa)">
+            <summary>
+            Atualizar Casa de Show.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Delete(System.Int32)">
+            <summary>
+            Deletar uma Casa de Show.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByAsc">
+            <summary>
+            Listar as casas em odem alfabética crescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByDesc">
+            <summary>
+            Listar as casas em odem alfabética decrescente por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.EventosAPIController.GetCasaByNome(System.String)">
+            <summary>
+            Buscar por casa por nome.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.GenerosAPIController.GetGenero">
+            <summary>
+            Listar todos os generos.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.GenerosAPIController.GetCasa(System.Int32)">
+            <summary>
+            Buscar por ID.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.GenerosAPIController.Post(CasaEventos.Controllers.GenerosAPIController.GeneroTemp)">
+            <summary>
+            Inserir genero.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.GenerosAPIController.Patch(CasaEventos.Models.Genero)">
+            <summary>
+            Atualizar Genero.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.GenerosAPIController.Delete(System.Int32)">
+            <summary>
+            Deletar um Genero.
+            </summary>
+        </member>
     </members>
 </doc>

@@ -38,7 +38,7 @@ namespace CasaEventos
                 options.Password.RequireNonAlphanumeric = false;
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(o => o.AllowEmptyInputInBodyModelBinding = true);
             services.AddRazorPages();
 
             services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Cargo", "True")));
