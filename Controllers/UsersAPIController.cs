@@ -1,8 +1,6 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using CasaEventos.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CasaEventos.Controllers
@@ -22,66 +20,57 @@ namespace CasaEventos.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            var users = _context.Users.Select(u => new
+            if (_context.Users.Count() > 0)
             {
-                u.Id,
-                u.Email,
-                User.FindFirst("FullName").Value
-            })
-                .ToList();
-            return Ok(users);
+                var users = _context.Users.Select(u => new
+                {
+                    u.Id,
+                    u.Email,
+                    User.FindFirst("FullName").Value
+                })
+                    .ToList();
+                return Ok(users);
+            }
+            else
+            {
+                Response.StatusCode = 404;
+                return new ObjectResult("Não existem usuários cadastrados.");
+            }
         }
 
 
-        // /// <summary>
-        // /// Buscar por ID.
-        // /// </summary>
-        // [HttpGet("{id}")]
-        // public IActionResult GetUser(string email)
-        // {
-        //     if (id != 0)
-        //     {
-        //         try
-        //         {
-        //             IdentityUser user = _context.Users.Select(
-        //                 us => new UserTemp
-        //                 {
-        //                     Id = us.Id,
-        //                     Email = us.Email
-        //                 }).First(user => user.Email == email);
-        //             return Ok(new { user });
+        /// <summary>
+        /// Buscar por e-mail.
+        /// </summary>
+        [HttpGet("{email}")]
+        public IActionResult GetUser(string email)
+        {
+            try
+            {
+                var user = _context.Users.Select(
+                    x => new UserTemp
+                    {
+                        id = x.Id,
+                        email = x.Email,
+                        nome = User.FindFirst("FullName").Value
+                    }).First(user => user.email == email);
+                return Ok(new { user });
 
-        //         }
-        //         catch (Exception)
-        //         {
-        //             Response.StatusCode = 404;
-        //             return new ObjectResult("Usuário não encontrado.");
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Response.StatusCode = 404;
-        //         return new ObjectResult("Não existe usuário cadastrado");
-        //     }
-        // }
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = 404;
+                return new ObjectResult("Usuário não encontrado, favor inserir um e-mail válido.");
+            }
+        }
 
 
         public class UserTemp
         {
-            public int Id { get; set; }
-            [Required(ErrorMessage = "Campo Email é obrigatório")]
-            [EmailAddress]
-            public string Email { get; set; }
+            public string id { get; set; }
+            public string email { get; set; }
 
-            [Required(ErrorMessage = "Campo de Senha é obrigatório")]
-            [StringLength(100, ErrorMessage = "A {0} precisa ter pelo menos {2} e no maximo {1} caracteres.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Compare("Password", ErrorMessage = "As senhas precisam ser iguais.")]
-            public string ConfirmPassword { get; set; }
-            public string Nome { get; set; }
+            public string nome { get; set; }
         }
     }
 }

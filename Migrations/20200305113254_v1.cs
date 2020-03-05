@@ -210,7 +210,7 @@ namespace CasaEventos.Migrations
                         column: x => x.GeneroId,
                         principalTable: "Genero",
                         principalColumn: "GeneroId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,13 +233,13 @@ namespace CasaEventos.Migrations
                         column: x => x.EventoId,
                         principalTable: "Evento",
                         principalColumn: "EventoId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Compra_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

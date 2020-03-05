@@ -43,7 +43,7 @@ namespace CasaEventos.Controllers
                     return Ok(casa);
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Response.StatusCode = 404;
                     return new ObjectResult("Não existem casas criadas com o respectivo Id");
@@ -64,25 +64,35 @@ namespace CasaEventos.Controllers
             /* Validação */
             if (casaTemp != null)
             {
-                if (casaTemp.Nome.Length <= 1)
+                try
+                {
+
+
+                    if (casaTemp.Nome.Length <= 1)
+                    {
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "O nome da casa precisa ter mais do que 1 caracter." });
+                    }
+                    if (casaTemp.Endereco.Length <= 1)
+                    {
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "O endereço da casa precisa ter mais do que 1 caracter." });
+                    }
+
+                    Casa casaAPI = new Casa();
+                    casaAPI.Nome = casaTemp.Nome;
+                    casaAPI.Endereco = casaTemp.Endereco;
+
+                    _context.Casa.Add(casaAPI);
+                    _context.SaveChanges();
+                    Response.StatusCode = 201; //Retorna o status Criado
+                    return new ObjectResult("Casa criada com sucesso."); // Funciona similar ao OK porem você precisa setar o Status Code e usar um new
+                }
+                catch (Exception)
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "O nome da casa precisa ter mais do que 1 caracter." });
+                    return new ObjectResult(new { msg = "Requisição invalida o corpo não pode ser vazio." });
                 }
-                if (casaTemp.Endereco.Length <= 1)
-                {
-                    Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "O endereço da casa precisa ter mais do que 1 caracter." });
-                }
-
-                Casa casaAPI = new Casa();
-                casaAPI.Nome = casaTemp.Nome;
-                casaAPI.Endereco = casaTemp.Endereco;
-
-                _context.Casa.Add(casaAPI);
-                _context.SaveChanges();
-                Response.StatusCode = 201; //Retorna o status Criado
-                return new ObjectResult("Casa criada com sucesso."); // Funciona similar ao OK porem você precisa setar o Status Code e usar um new
             }
             else
             {
@@ -98,18 +108,23 @@ namespace CasaEventos.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch([FromBody] Casa casa)
         {
-            if (casa.CasaId > 0)
+            if (casa != null)
             {
                 try
                 {
                     var c = _context.Casa.First(casaTemp => casaTemp.CasaId == casa.CasaId);
                     if (c != null)
                     {
-                        //Editar
-
-                        //"IF ELSE reduzido"  
-                        /*Condição ? faz algo : faz outra coisa, ou seja, se o dado nome for diferente de nulo que vem da minha requisição eu altero o nome do produto pelo nome
-                        que vem na minha requisição, senão o nome que veio na requisição é nulo ele mantem o nome do produto*/
+                        if (casa.Nome.Length <= 1)
+                        {
+                            Response.StatusCode = 400;
+                            return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
+                        }
+                        if (casa.Endereco.Length <= 1)
+                        {
+                            Response.StatusCode = 400;
+                            return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
+                        }
                         c.Nome = casa.Nome != null ? casa.Nome : c.Nome;
                         c.Endereco = casa.Endereco != null ? casa.Endereco : c.Endereco;
 
@@ -149,7 +164,7 @@ namespace CasaEventos.Controllers
                 _context.SaveChanges();
                 return Ok();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Response.StatusCode = 404;
                 return new ObjectResult("");
@@ -177,7 +192,7 @@ namespace CasaEventos.Controllers
 
         }
         /// <summary>
-        /// Buscar por casa por nome.
+        /// Buscar casa por nome.
         /// </summary>
         [HttpGet("nome")]
         public IActionResult GetCasaByNome(string Casa)
@@ -188,7 +203,7 @@ namespace CasaEventos.Controllers
                 return Ok(casaNome);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Response.StatusCode = 404; //Retorna o status Criado
                 return new ObjectResult("Nome de casa invalido.");

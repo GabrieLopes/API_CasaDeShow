@@ -41,7 +41,7 @@
         </member>
         <member name="M:CasaEventos.Controllers.CasaAPIController.GetCasaByNome(System.String)">
             <summary>
-            Buscar por casa por nome.
+            Buscar casa por nome.
             </summary>
         </member>
         <member name="M:CasaEventos.Controllers.EventosAPIController.GetEvento">
@@ -61,7 +61,7 @@
         </member>
         <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Evento)">
             <summary>
-            Atualizar Casa de Show.
+            Atualizar evento.
             </summary>
         </member>
         <member name="M:CasaEventos.Controllers.EventosAPIController.Delete(System.Int32)">
@@ -137,6 +137,21 @@
         <member name="M:CasaEventos.Controllers.UsersAPIController.GetUsers">
             <summary>
             Listar todos os usuários.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.UsersAPIController.GetUser(System.String)">
+            <summary>
+            Buscar por e-mail.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.VendasAPIController.GetCompra">
+            <summary>
+            Listar todas as vendas.
+            </summary>
+        </member>
+        <member name="M:CasaEventos.Controllers.VendasAPIController.GetUser(System.Nullable{System.Int32})">
+            <summary>
+            Buscar compra por Id.
             </summary>
         </member>
     </members>

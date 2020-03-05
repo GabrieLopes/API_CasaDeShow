@@ -40,7 +40,7 @@ namespace CasaEventos.Controllers
                     return Ok(genero);
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Response.StatusCode = 404;
                     return new ObjectResult("Genero não encontrado.");
@@ -133,7 +133,7 @@ namespace CasaEventos.Controllers
                 _context.SaveChanges();
                 return Ok(new { msg = "Genero excluido." });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Response.StatusCode = 404;
                 return new ObjectResult("Genero não encontrado.");
