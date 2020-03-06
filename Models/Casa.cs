@@ -4,7 +4,6 @@ namespace CasaEventos.Models
 {
     public class Casa
     {
-        [Required]
         [Key]
         public int CasaId { get;set; }
 

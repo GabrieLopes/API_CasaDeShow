@@ -204,20 +204,20 @@ namespace CasaEventos.Controllers
                     else
                     {
                         Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Evento não encontrado." });
+                        return new ObjectResult(new { msg = "Requsição inválida, o corpo não pode ser vazio." });
                     }
                 }
                 catch
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "Evento não encontrado." });
+                    return new ObjectResult(new { msg = "Requsição inválida, o corpo não pode ser vazio." });
                 }
 
             }
             else
             {
                 Response.StatusCode = 400;
-                return new ObjectResult(new { msg = "Id do evento é invalido." });
+                return new ObjectResult(new { msg = "Não existe nenhum evento cadastrado." });
             }
         }
 
@@ -237,7 +237,7 @@ namespace CasaEventos.Controllers
             catch (Exception)
             {
                 Response.StatusCode = 404;
-                return new ObjectResult(new { msg = "Não foi possivel excluir o evento." });
+                return new ObjectResult(new { msg = "Não foi possivel excluir o evento ou o evento não existe." });
             }
         }
         /// <summary>

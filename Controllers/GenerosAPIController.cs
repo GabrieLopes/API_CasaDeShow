@@ -61,19 +61,27 @@ namespace CasaEventos.Controllers
             /* Validação */
             if (generoTemp != null)
             {
-                if (generoTemp.GeneroNome.Length <= 1)
+                try
+                {
+                    if (generoTemp.GeneroNome.Length <= 1)
+                    {
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "O nome do genero precisa ter mais do que 1 caracter." });
+                    }
+
+                    Genero generoAPI = new Genero();
+                    generoAPI.GeneroNome = generoTemp.GeneroNome;
+
+                    _context.Genero.Add(generoAPI);
+                    _context.SaveChanges();
+                    Response.StatusCode = 201;
+                    return new ObjectResult("Genero criado com sucesso.");
+                }
+                catch (Exception)
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "O nome do genero precisa ter mais do que 1 caracter." });
+                    return new ObjectResult(new { msg = "Requisição invalida o corpo não pode ser vazio." });
                 }
-
-                Genero generoAPI = new Genero();
-                generoAPI.GeneroNome = generoTemp.GeneroNome;
-
-                _context.Genero.Add(generoAPI);
-                _context.SaveChanges();
-                Response.StatusCode = 201; //Retorna o status Criado
-                return new ObjectResult("Genero criado com sucesso."); // Funciona similar ao OK porem você precisa setar o Status Code e usar um new
             }
             else
             {
@@ -89,34 +97,42 @@ namespace CasaEventos.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch([FromBody] Genero genero)
         {
-            if (genero.GeneroId > 0)
+            if (_context.Genero.Count() > 0)
             {
-                try
+                if (genero.GeneroId > 0)
                 {
-                    var g = _context.Genero.First(generoTemp => generoTemp.GeneroId == genero.GeneroId);
-                    if (g != null)
+                    try
                     {
-                        g.GeneroNome = genero.GeneroNome != null ? genero.GeneroNome : g.GeneroNome;
-                        _context.SaveChanges();
-                        return Ok();
+                        var g = _context.Genero.First(generoTemp => generoTemp.GeneroId == genero.GeneroId);
+                        if (g != null)
+                        {
+                            g.GeneroNome = genero.GeneroNome != null ? genero.GeneroNome : g.GeneroNome;
+                            _context.SaveChanges();
+                            return Ok();
+                        }
+                        else
+                        {
+                            Response.StatusCode = 400;
+                            return new ObjectResult(new { msg = "Genero não encontrado." });
+                        }
                     }
-                    else
+                    catch
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "Genero não encontrado." });
                     }
+
                 }
-                catch
+                else
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "Genero não encontrado." });
+                    return new ObjectResult(new { msg = "Id do genero é invalido e o GeneroNome é obrigatório." });
                 }
-
             }
             else
             {
                 Response.StatusCode = 400;
-                return new ObjectResult(new { msg = "Id do genero é invalido." });
+                return new ObjectResult(new { msg = "Id do genero é invalido ou não existe." });
             }
         }
 
@@ -141,9 +157,6 @@ namespace CasaEventos.Controllers
         }
         public class GeneroTemp
         {
-            [Required(ErrorMessage = "Nome do genero é obrigatório!")]
-            [StringLength(100, ErrorMessage = "Nome do genero é muito grande, tente um nome menor")]
-            [MinLength(2, ErrorMessage = "Nome do genero é muito pequeno, tente um nome com pelo menos 2 caracteres")]
             public string GeneroNome { get; set; }
         }
     }

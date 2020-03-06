@@ -108,7 +108,7 @@ namespace CasaEventos.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch([FromBody] Casa casa)
         {
-            if (casa != null)
+            if (_context.Casa.Count() > 0)
             {
                 try
                 {
@@ -167,7 +167,7 @@ namespace CasaEventos.Controllers
             catch (Exception)
             {
                 Response.StatusCode = 404;
-                return new ObjectResult("");
+                return new ObjectResult("Id de casa é invalido.");
             }
         }
 
@@ -197,16 +197,36 @@ namespace CasaEventos.Controllers
         [HttpGet("nome")]
         public IActionResult GetCasaByNome(string Casa)
         {
-            try
+            if (_context.Casa.Count() > 0)
             {
-                var casaNome = _context.Casa.Where(c => c.Nome == Casa).ToList();
-                return Ok(casaNome);
+                if (_context.Casa.Where(c => c.Nome == Casa).Count() == 0)
+                {
+                    Response.StatusCode = 404;
+                    return new ObjectResult("Nome de casa invalido ou não existe.");
+                }
+                else
+                {
+                    try
+                    {
+                        var casaNome = _context.Casa.Where(c => c.Nome == Casa).ToList();
+                        return Ok(casaNome);
+
+                    }
+
+                    catch (Exception)
+                    {
+                        Response.StatusCode = 404;
+                        return new ObjectResult("Nome de casa invalido.");
+                    }
+
+
+                }
 
             }
-            catch (Exception)
+            else
             {
-                Response.StatusCode = 404; //Retorna o status Criado
-                return new ObjectResult("Nome de casa invalido.");
+                Response.StatusCode = 404;
+                return new ObjectResult("Nome de casa invalido ou não existe.");
             }
         }
 
