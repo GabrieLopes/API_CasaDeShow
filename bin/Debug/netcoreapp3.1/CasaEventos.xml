@@ -19,7 +19,7 @@
             Inserir casa de show.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.CasaAPIController.Patch(CasaEventos.Models.Casa)">
+        <member name="M:CasaEventos.Controllers.CasaAPIController.Patch(CasaEventos.Controllers.CasaAPIController.CasaTemp)">
             <summary>
             Atualizar Casa de Show.
             </summary>
@@ -49,7 +49,7 @@
             Listar todas os eventos.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.Post(EventoTemp)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Post(EventoTempo)">
             <summary>
             Salvar um evento.
             </summary>
@@ -59,7 +59,7 @@
             Buscar por ID.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Evento)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(EventoTempo)">
             <summary>
             Atualizar evento.
             </summary>

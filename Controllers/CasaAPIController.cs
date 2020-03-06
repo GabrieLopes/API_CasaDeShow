@@ -106,48 +106,75 @@ namespace CasaEventos.Controllers
         /// Atualizar Casa de Show.
         /// </summary>
         [HttpPatch("{id}")]
-        public IActionResult Patch([FromBody] Casa casa)
+        public IActionResult Patch([FromBody] CasaTemp casaTemp)
         {
-            if (_context.Casa.Count() > 0)
+            try
             {
-                try
+                if (_context.Casa.Count() > 0)
                 {
-                    var c = _context.Casa.First(casaTemp => casaTemp.CasaId == casa.CasaId);
-                    if (c != null)
+                    try
                     {
-                        if (casa.Nome.Length <= 1)
+                        Casa casa = _context.Casa.First(casaTemp => casaTemp.CasaId == casaTemp.CasaId);
+                        if (casaTemp.CasaId > 0)
+                        {
+                            if (casaTemp.Nome != null)
+                            {
+                                if (casaTemp.Nome.Length <= 1)
+                                {
+                                    Response.StatusCode = 400;
+                                    return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
+                                }
+                                else
+                                {
+                                    casa.Nome = casaTemp.Nome;
+                                    _context.SaveChanges();
+                                    Response.StatusCode = 200;
+                                    return new ObjectResult(new { msg = "Nome alterado com sucesso." });
+                                }
+                            }
+                            if (casaTemp.Endereco != null)
+                            {
+                                if (casaTemp.Endereco.Length <= 1)
+                                {
+                                    Response.StatusCode = 400;
+                                    return new ObjectResult(new { msg = "O endereço do evento precisa ter mais do que 1 caracter." });
+                                }
+                                else
+                                {
+                                    casa.Endereco = casaTemp.Endereco;
+                                    _context.SaveChanges();
+                                    Response.StatusCode = 200;
+                                    return new ObjectResult(new { msg = "Endereço alterado com sucesso." });
+                                }
+                            }
+                        }
+                        else
                         {
                             Response.StatusCode = 400;
-                            return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
+                            return new ObjectResult(new { msg = "Não é possivel alterar uma casa vazia." });
                         }
-                        if (casa.Endereco.Length <= 1)
-                        {
-                            Response.StatusCode = 400;
-                            return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
-                        }
-                        c.Nome = casa.Nome != null ? casa.Nome : c.Nome;
-                        c.Endereco = casa.Endereco != null ? casa.Endereco : c.Endereco;
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "Não é possivel alterar uma casa vazia." });
 
-                        _context.SaveChanges();
-                        return Ok();
                     }
-                    else
+                    catch
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "Casa não encontrada." });
                     }
+
                 }
-                catch
+                else
                 {
                     Response.StatusCode = 400;
-                    return new ObjectResult(new { msg = "Casa não encontrada." });
+                    return new ObjectResult(new { msg = "Id da casa é invalido." });
                 }
 
             }
-            else
+            catch (Exception)
             {
                 Response.StatusCode = 400;
-                return new ObjectResult(new { msg = "Id da casa é invalido." });
+                return new ObjectResult(new { msg = "Requisição invalida, o corpo não pode ser vazio." });
             }
         }
 
@@ -218,8 +245,6 @@ namespace CasaEventos.Controllers
                         Response.StatusCode = 404;
                         return new ObjectResult("Nome de casa invalido.");
                     }
-
-
                 }
 
             }
@@ -234,6 +259,7 @@ namespace CasaEventos.Controllers
 
         public class CasaTemp
         {
+            public int CasaId { get; set; }
             public string Nome { get; set; }
             public string Endereco { get; set; }
         }

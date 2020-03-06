@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using CasaEventos.Data;
+using CasaEventos.DTO;
 using CasaEventos.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,73 +25,73 @@ namespace CasaEventos.Controllers
         {
             if (_context.Evento.Count() <= 0)
             {
+                Response.StatusCode = 404;
+                return new ObjectResult("Nenhum evento foi encontrado.");
+            }
+            else
+            {
                 _context.Casa.ToList();
                 _context.Genero.ToList();
                 var eventos = _context.Evento.ToList();
                 return Ok(eventos);
-            }
-            else
-            {
-                Response.StatusCode = 404;
-                return new ObjectResult("Nenhum evento foi encontrado.");
             }
         }
         /// <summary>
         /// Salvar um evento.
         /// </summary>
         [HttpPost]
-        public IActionResult Post([FromBody] EventoTemp eventoTemp)
+        public IActionResult Post([FromBody] EventoTempo eventoTempo)
         {
             /* Validação */
-            if (eventoTemp != null)
+            if (eventoTempo != null)
             {
                 try
                 {
 
-                    if (eventoTemp.NomeEvento.Length <= 1)
+                    if (eventoTempo.NomeEvento.Length <= 1)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
                     }
-                    if (eventoTemp.CapacidadeEvento <= 0)
+                    if (eventoTempo.CapacidadeEvento <= 0)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "A capacidade precisa ser superior a 0." });
                     }
-                    if (eventoTemp.QuantidadeIngressos <= 0)
+                    if (eventoTempo.QuantidadeIngressos <= 0)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "A quantidade de ingressos precisa ser superior a 0." });
                     }
-                    if (eventoTemp.DataEvento == null)
+                    if (eventoTempo.DataEvento == null)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "Coloque uma data válida." });
                     }
-                    if (eventoTemp.ValorIngresso <= 0)
+                    if (eventoTempo.ValorIngresso <= 0)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "O preço do ingresso precisa ser superior a 0." });
                     }
-                    if (eventoTemp.CasaId <= 0)
+                    if (eventoTempo.CasaId <= 0)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "Id de casa inválido." });
                     }
-                    if (eventoTemp.GeneroId <= 0)
+                    if (eventoTempo.GeneroId <= 0)
                     {
                         Response.StatusCode = 400;
                         return new ObjectResult(new { msg = "Id de genero inválido." });
                     }
                     Evento eventoAPI = new Evento();
-                    eventoAPI.NomeEvento = eventoTemp.NomeEvento;
-                    eventoAPI.CapacidadeEvento = eventoTemp.CapacidadeEvento;
-                    eventoAPI.QuantidadeIngressos = eventoTemp.QuantidadeIngressos;
-                    eventoAPI.DataEvento = eventoTemp.DataEvento;
-                    eventoAPI.ValorIngresso = eventoTemp.ValorIngresso;
-                    eventoAPI.Imagem = eventoTemp.Imagem;
-                    eventoAPI.Casa = _context.Casa.First(cs => cs.CasaId == eventoTemp.CasaId);
-                    eventoAPI.Genero = _context.Genero.First(cs => cs.GeneroId == eventoTemp.GeneroId);
+                    eventoAPI.NomeEvento = eventoTempo.NomeEvento;
+                    eventoAPI.CapacidadeEvento = eventoTempo.CapacidadeEvento;
+                    eventoAPI.QuantidadeIngressos = eventoTempo.QuantidadeIngressos;
+                    eventoAPI.DataEvento = eventoTempo.DataEvento;
+                    eventoAPI.ValorIngresso = eventoTempo.ValorIngresso;
+                    eventoAPI.Imagem = eventoTempo.Imagem;
+                    eventoAPI.Casa = _context.Casa.First(cs => cs.CasaId == eventoTempo.CasaId);
+                    eventoAPI.Genero = _context.Genero.First(cs => cs.GeneroId == eventoTempo.GeneroId);
                     eventoAPI.Status = true;
 
                     _context.Evento.Add(eventoAPI);
@@ -143,68 +144,139 @@ namespace CasaEventos.Controllers
         /// Atualizar evento.
         /// </summary>
         [HttpPatch("{id}")]
-        public IActionResult Patch([FromBody] Evento evento)
+        public IActionResult Patch([FromBody] EventoTempo eventoTempo)
         {
+
             if (_context.Evento.Count() > 0)
             {
                 try
                 {
+                    Evento evento = _context.Evento.First(e => e.EventoId == eventoTempo.EventoId);
+                    if (eventoTempo.EventoId > 0)
+                    {
 
-                    if (evento.NomeEvento.Length <= 1)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
-                    }
-                    if (evento.CapacidadeEvento <= 0)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "A capacidade precisa ser superior a 0." });
-                    }
-                    if (evento.QuantidadeIngressos <= 0)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "A quantidade de ingressos precisa ser superior a 0." });
-                    }
-                    if (evento.DataEvento == null)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Coloque uma data válida." });
-                    }
-                    if (evento.ValorIngresso <= 0)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "O preço do ingresso precisa ser superior a 0." });
-                    }
-                    if (evento.Casa.CasaId <= 0)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Id de casa inválido." });
-                    }
-                    if (evento.Genero.GeneroId <= 0)
-                    {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Id de genero inválido." });
-                    }
-                    var ev = _context.Evento.First(eventoTemp => eventoTemp.EventoId == evento.EventoId);
-                    if (ev != null)
-                    {
-                        //Editar
-                        ev.NomeEvento = evento.NomeEvento != null ? evento.NomeEvento : ev.NomeEvento;
-                        ev.CapacidadeEvento = evento.CapacidadeEvento != 0 ? evento.CapacidadeEvento : ev.CapacidadeEvento;
-                        ev.QuantidadeIngressos = evento.QuantidadeIngressos != 0 ? evento.QuantidadeIngressos : ev.QuantidadeIngressos;
-                        ev.DataEvento = evento.DataEvento != null ? evento.DataEvento : ev.DataEvento;
-                        ev.ValorIngresso = evento.ValorIngresso != 0 ? evento.ValorIngresso : ev.ValorIngresso;
-                        ev.Imagem = evento.Imagem != null ? evento.Imagem : ev.Imagem;
-                        ev.Casa = evento.Casa != null ? evento.Casa : ev.Casa;
-                        ev.Genero = evento.Genero != null ? evento.Genero : ev.Genero;
+                        //Alterar nome do evento
+                        if (eventoTempo.NomeEvento != null)
+                        {
+                            if (eventoTempo.NomeEvento.Length <= 1)
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "O nome do evento precisa ter mais do que 1 caracter." });
+                            }
+                            else
+                            {
+                                evento.NomeEvento = eventoTempo.NomeEvento;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Nome alterado com sucesso." });
+                            }
 
-                        _context.SaveChanges();
-                        return Ok(new { msg = "Evento alterado com sucesso." });
+                        }
+                        // Alterar capacidade do evento
+                        if (eventoTempo.CapacidadeEvento.ToString() != null)
+                        {
+                            if (eventoTempo.CapacidadeEvento > 0)
+                            {
+                                evento.CapacidadeEvento = eventoTempo.CapacidadeEvento;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Capacidade alterada com sucesso." });
+                            }
+                            else
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "A capacidade precisa ser superior a 0." });
+                            }
+
+                        }
+                        // Alterar quantidade de ingressos
+                        if (eventoTempo.ValorIngresso.ToString() != null)
+                        {
+                            if (eventoTempo.ValorIngresso > 0)
+                            {
+                                evento.ValorIngresso = eventoTempo.ValorIngresso;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Valor dos ingressos alterados com sucesso." });
+                            }
+                            else
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "A quantidade de ingressos precisa ser superior a 0." });
+                            }
+                        }
+                        //Alterar Data do evento
+                        if (eventoTempo.DataEvento != null)
+                        {
+                            if (eventoTempo.DataEvento == null)
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "Coloque uma data válida." });
+                            }
+                            else
+                            {
+                                evento.DataEvento = eventoTempo.DataEvento;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Data alterada com sucesso." });
+                            }
+
+                        }
+                        // Alterar Valor do Ingresso
+                        if (eventoTempo.QuantidadeIngressos.ToString() != null)
+                        {
+                            if (eventoTempo.QuantidadeIngressos > 0)
+                            {
+                                evento.QuantidadeIngressos = eventoTempo.QuantidadeIngressos;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Quantidade dos ingressos alterado com sucesso." });
+                            }
+                            else
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "A quantia do ingresso precisa ser superior a 0." });
+                            }
+                        }
+                        // Alterar Casa
+                        if (eventoTempo.CasaId.ToString() != null)
+                        {
+                            if (eventoTempo.CasaId <= 0)
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "Id de casa inválido." });
+                            }
+                            else
+                            {
+                                evento.Casa.CasaId = eventoTempo.CasaId;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Casa de show alterada com sucesso." });
+                            }
+                        }
+                        // Alterar Genero
+                        if (eventoTempo.GeneroId.ToString() != null)
+                        {
+                            if (eventoTempo.GeneroId <= 0)
+                            {
+                                Response.StatusCode = 400;
+                                return new ObjectResult(new { msg = "Id de genero inválido." });
+                            }
+                            else
+                            {
+                                evento.Genero.GeneroId = eventoTempo.GeneroId;
+                                _context.SaveChanges();
+                                Response.StatusCode = 200;
+                                return new ObjectResult(new { msg = "Genero do evento alterado com sucesso." });
+                            }
+                        }
+                        Response.StatusCode = 400;
+                        return new ObjectResult(new { msg = "Não é possivel alterar um evento vazio." });
                     }
                     else
                     {
-                        Response.StatusCode = 400;
-                        return new ObjectResult(new { msg = "Requsição inválida, o corpo não pode ser vazio." });
+                        Response.StatusCode = 404;
+                        return new ObjectResult(new { msg = "Id de evento invalido." });
                     }
                 }
                 catch
@@ -219,6 +291,7 @@ namespace CasaEventos.Controllers
                 Response.StatusCode = 400;
                 return new ObjectResult(new { msg = "Não existe nenhum evento cadastrado." });
             }
+
         }
 
         /// <summary>
@@ -330,8 +403,9 @@ namespace CasaEventos.Controllers
 
 
 
-public class EventoTemp
+public class EventoTempo
 {
+    public int EventoId { get; set; }
     public string NomeEvento { get; set; }
 
     public int CapacidadeEvento { get; set; }
