@@ -14,7 +14,7 @@ namespace CasaEventos.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CasaEventos.Models.Casa", b =>
@@ -24,14 +24,10 @@ namespace CasaEventos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
-                        .HasMaxLength(150);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
-                        .HasMaxLength(100);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("CasaId");
 
@@ -77,7 +73,7 @@ namespace CasaEventos.Migrations
                     b.Property<int>("CapacidadeEvento")
                         .HasColumnType("int");
 
-                    b.Property<int>("CasaId")
+                    b.Property<int?>("CasaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataEvento")
@@ -90,9 +86,7 @@ namespace CasaEventos.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("NomeEvento")
-                        .IsRequired()
-                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
-                        .HasMaxLength(100);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("QuantidadeIngressos")
                         .HasColumnType("int");
@@ -119,9 +113,7 @@ namespace CasaEventos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("GeneroNome")
-                        .IsRequired()
-                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
-                        .HasMaxLength(100);
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("GeneroId");
 
@@ -339,9 +331,7 @@ namespace CasaEventos.Migrations
                 {
                     b.HasOne("CasaEventos.Models.Casa", "Casa")
                         .WithMany()
-                        .HasForeignKey("CasaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CasaId");
 
                     b.HasOne("CasaEventos.Models.Genero", "Genero")
                         .WithMany()

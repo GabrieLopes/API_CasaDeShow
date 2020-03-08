@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\CasaEventos.csproj": {}
+    "C:\\Users\\gabri\\Documents\\CodeProjects\\API_CasaDeShow\\CasaEventos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\CasaEventos.csproj": {
+    "C:\\Users\\gabri\\Documents\\CodeProjects\\API_CasaDeShow\\CasaEventos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\CasaEventos.csproj",
+        "projectUniqueName": "C:\\Users\\gabri\\Documents\\CodeProjects\\API_CasaDeShow\\CasaEventos.csproj",
         "projectName": "CasaEventos",
-        "projectPath": "C:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\CasaEventos.csproj",
-        "packagesPath": "C:\\Users\\GLLV\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\GLLV\\Desktop\\Code\\CasaEventos\\obj\\",
+        "projectPath": "C:\\Users\\gabri\\Documents\\CodeProjects\\API_CasaDeShow\\CasaEventos.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\Documents\\CodeProjects\\API_CasaDeShow\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\GLLV\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -36,6 +36,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Fluent.Net": {
+              "target": "Package",
+              "version": "[1.0.31, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -47,6 +51,12 @@
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
               "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

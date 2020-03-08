@@ -59,7 +59,7 @@
             Buscar por ID.
             </summary>
         </member>
-        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(EventoTempo)">
+        <member name="M:CasaEventos.Controllers.EventosAPIController.Patch(CasaEventos.Models.Evento)">
             <summary>
             Atualizar evento.
             </summary>

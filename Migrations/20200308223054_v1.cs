@@ -53,8 +53,8 @@ namespace CasaEventos.Migrations
                 {
                     CasaId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(maxLength: 100, nullable: false),
-                    Endereco = table.Column<string>(maxLength: 150, nullable: false)
+                    Nome = table.Column<string>(nullable: true),
+                    Endereco = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,7 +67,7 @@ namespace CasaEventos.Migrations
                 {
                     GeneroId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    GeneroNome = table.Column<string>(maxLength: 100, nullable: false)
+                    GeneroNome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,13 +186,13 @@ namespace CasaEventos.Migrations
                 {
                     EventoId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    NomeEvento = table.Column<string>(maxLength: 100, nullable: false),
+                    NomeEvento = table.Column<string>(nullable: true),
                     CapacidadeEvento = table.Column<int>(nullable: false),
                     QuantidadeIngressos = table.Column<int>(nullable: false),
                     DataEvento = table.Column<DateTime>(nullable: false),
                     ValorIngresso = table.Column<float>(nullable: false),
                     Status = table.Column<bool>(nullable: false),
-                    CasaId = table.Column<int>(nullable: false),
+                    CasaId = table.Column<int>(nullable: true),
                     GeneroId = table.Column<int>(nullable: true),
                     Imagem = table.Column<string>(nullable: true)
                 },
@@ -204,7 +204,7 @@ namespace CasaEventos.Migrations
                         column: x => x.CasaId,
                         principalTable: "Casa",
                         principalColumn: "CasaId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Evento_Genero_GeneroId",
                         column: x => x.GeneroId,
